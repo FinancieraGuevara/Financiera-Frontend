@@ -1,15 +1,29 @@
-footer {
-  text-align: center;
-  color: white;
-  background: linear-gradient(to right, #000000, #363948);
-  height: 10vh;
-  justify-content: center;
-  align-items: center;
+.footer-container {
+  background: linear-gradient(to right, #111217 40%, #363948 65%);
+  padding: 1rem;
+  text-decoration: none;
+  max-width: 100%;
 }
-p{
-  text-align: center;
+
+.footer-logo {
+  width: 128px;
+  max-width: 100%;
+
+}
+
+.hr {
+  border: 1px solid #ffffff;
+}
+
+.nav-link {
   color: white;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
+  text-decoration: none;
+}
+
+p {
+  margin-top: 1rem;
+}
+
+hr {
+  border-top: 1px solid #666;
 }

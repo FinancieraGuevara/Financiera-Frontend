@@ -3,8 +3,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 62vh;
   background-color: white;
+  text-decoration: none;
 }
 
 form {
@@ -15,7 +16,7 @@ form {
 .form-control {
   border-radius: 50px;
   padding: 10px;
-  border: 1px solid #cccccc;
+  border: 1px solid #363948FF;
   font-size: 1rem;
 }
 

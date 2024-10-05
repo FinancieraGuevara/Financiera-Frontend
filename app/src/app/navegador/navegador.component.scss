@@ -1,10 +1,54 @@
 .navbar {
-  background: linear-gradient(to right, #000000, #363948);
+  background: linear-gradient(to right, #111217 40%, #363948 65%);
   padding: 1rem;
+  text-decoration: none;
 }
+
 .navbar-brand img {
-  width: 120px;
+  width: 128px; /* Ajusta el tamaño del logo */
+  max-width: 100%;
+  margin-left: 650px;
 }
 .navbar-text {
   color: white;
+}
+
+
+.btn-login {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: white;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border: 1px solid #ffffff;
+  width: 250px;
+  justify-content: center;
+  position: relative;
+}
+
+.btn-login:hover {
+  background: linear-gradient(to right, #111217 20%, #363948 65%);
+}
+
+.btn-login i {
+  font-size: 1.5rem;
+  margin-right: 5px;
+}
+
+.icon-wrapper {
+  background-color: white;
+  color: black;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.icon-wrapper img{
+  width: 20px;
+  max-width: 100%;
 }
