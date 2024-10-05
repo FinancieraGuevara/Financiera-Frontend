@@ -12,5 +12,5 @@ import {NavegadorComponent} from "./navegador/navegador.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Financiera Guevara';
 }

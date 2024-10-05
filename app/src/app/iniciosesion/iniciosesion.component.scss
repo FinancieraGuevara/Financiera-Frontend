@@ -1,33 +1,32 @@
 .login-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 80vh;
   background-color: white;
 }
-.login-card {
-  background-color: white;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
+
+form {
   width: 100%;
-  text-align: center;
+  max-width: 400px;
 }
+
 .form-control {
   border-radius: 50px;
   padding: 10px;
   border: 1px solid #cccccc;
   font-size: 1rem;
 }
+
 .btn-custom {
-  background-image: linear-gradient(to right, #434343, #000000);
+  background: linear-gradient(to right, #000000, #363948);
   color: white;
   border-radius: 50px;
   padding: 10px;
   font-size: 1rem;
 }
-.btn-custom:hover {
-  background-image: linear-gradient(to right, #555555, #111111);
-}
 
+.btn-custom:hover {
+  background: linear-gradient(to right, #000000, #363948);
+}

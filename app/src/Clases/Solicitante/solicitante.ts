@@ -4,4 +4,6 @@ export class Solicitante {
     Apaterno: String
     Amaterno: String
     FechaNac : string
+    email:string;
+    address:string;
 }
