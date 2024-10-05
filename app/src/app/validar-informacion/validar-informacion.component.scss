@@ -1,0 +1,84 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .back-arrow {
+    top: 10px;
+    left: 10px;
+  }
+  
+  .informacion-cliente {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+.informacion-cliente h4 {
+    color: rgb(215, 197, 154);
+}
+  
+.btn {
+    background: linear-gradient(90deg, #F2CE76, #8D6516); /* Gradiente de izquierda (claro) a derecha (oscuro) */
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 20px;
+    background-size: 100% 100%; /* El fondo cubre todo el botón */
+}
+
+.btn:hover {
+    transform: translateY(-3px); /* Eleva el botón 5px hacia arriba */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar sensación de elevación */
+    background-position: left; /* Mueve el gradiente lentamente hacia la izquierda */
+}
+
+
+.btn-atras{
+    color: #8D6516;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+
+  
+  /* Para asegurar una transición fluida del fondo */
+  .btn:hover {
+    background-position: left; /* Mueve el gradiente lentamente hacia la izquierda */
+  }
+
+  .text-reset {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  
+
+  .dni-input {
+    border-radius: 25px; /* Bordes redondeados */
+    padding: 10px;
+    border: none; /* Eliminar borde predeterminado */
+    outline: none; /* Quitar borde azul al hacer clic */
+    background-color: transparent; /* Fondo transparente */
+    box-shadow: none; /* Eliminar cualquier sombra al hacer clic */
+}
+
+.input-wrapper {
+    border: 2px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-image-source: linear-gradient(90deg, #F2CE76, #8D6516); /* Gradiente del borde */
+    border-radius: 25px; /* Bordes redondeados */
+    padding: 5px; /* Espacio entre borde y campo de texto */
+    display: inline-block; /* Asegurar que se ajuste correctamente */
+}
+
+.dni-input:focus {
+    outline: none; /* Evitar borde azul al enfocarse */
+    box-shadow: none; /* Evitar sombra al enfocarse */
+}
+
+.min-vh-80 {
+    min-height: 80vh;
+}
