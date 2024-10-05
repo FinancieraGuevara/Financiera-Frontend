@@ -82,3 +82,8 @@
 .min-vh-80 {
     min-height: 80vh;
 }
+.btn-op:hover {
+  transform: translateY(0px)!important; /* Eleva el botón 5px hacia arriba */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar sensación de elevación */
+  background-position: left; /* Mueve el gradiente lentamente hacia la izquierda */
+}
