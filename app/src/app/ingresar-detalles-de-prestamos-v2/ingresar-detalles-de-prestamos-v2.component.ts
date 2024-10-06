@@ -13,25 +13,35 @@ import {NavegadorComponent} from "../navegador/navegador.component";
   styleUrl: './ingresar-detalles-de-prestamos-v2.component.scss'
 })
 export class IngresarDetallesDePrestamosV2Component {
-  // Método para validar que solo se ingresen números
-  validateInput(event: KeyboardEvent) {
-    const keyCode = event.keyCode ? event.keyCode : event.which;
+  
+  inputValue: number = 0;
+  isInputValid: boolean = false;
+  isTimeButtonSelected: boolean = false;
+  isConfirmButtonDisabled: boolean = true;
 
-    // Solo permitir números (0-9)
-    if (keyCode < 48 || keyCode > 57) {
+  validateInput(event: KeyboardEvent) {
+    const charCode = event.charCode;
+    if (charCode < 48 || charCode > 57) {
       event.preventDefault();
     }
   }
 
-  // Método para validar que el número ingresado sea positivo
-  validatePositive(event: any) {
-    const input = event.target.value;
+  validatePositive(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const value = parseFloat(input.value);
+    this.inputValue = value;
 
-    // Si el número es negativo, se borra el valor y se muestra alerta
-    if (parseFloat(input) < 0) {
-      event.target.value = '';
-      alert('Por favor, ingrese un número positivo.');
-    }
+    this.isInputValid = value >= 500 && value <= 50000;
+    this.updateConfirmButtonState();
+  }
+
+  selectTime() {
+    this.isTimeButtonSelected = true;
+    this.updateConfirmButtonState();
+  }
+
+  updateConfirmButtonState() {
+    this.isConfirmButtonDisabled = !(this.isInputValid && this.isTimeButtonSelected);
   }
   constructor(private router: Router) {}
 
