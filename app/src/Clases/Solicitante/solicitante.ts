@@ -1,9 +1,8 @@
 export class Solicitante {
-    dni:String;
-    nombre : String;
-    Apaterno: String
-    Amaterno: String
-    FechaNac : string
-    email:string;
-    address:string;
+    id: number;
+    numero: string;  // Cambiado de 'dni' a 'numero'
+    nombres: string;
+    apellido_paterno: string;
+    apellido_materno: string;
+    codigo_verificacion: string;  // Añadir este campo
 }

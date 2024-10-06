@@ -9,6 +9,7 @@ export class UserService {
   
   constructor(private http: HttpClient) {}
   private apiUrl = 'http://localhost:8080/api/v1';
+
   login(username: string, password: string): Observable<any> {
     const body = new HttpParams()
       .set('username', username)
@@ -18,6 +19,7 @@ export class UserService {
       withCredentials: true  // Para enviar cookies de sesión
     });
 }
+
   // GET para obtener los usuarios privados
   getPrivateUsers(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/private/users`, {
@@ -25,10 +27,15 @@ export class UserService {
     });
   }
 
+    // GET para obtener los usuarios publicos
+    getPublicUsers(): Observable<any> {
+      return this.http.get<any>(`${this.apiUrl}/public/users`, {
+        withCredentials: true  // Envía la cookie de sesión con la solicitud
+      });
+    }
  // Método para cerrar sesión
  logout(): Observable<any> {
-  return this.http.get<any>(`${this.apiUrl}/logout`, {
-    withCredentials: true // Asegúrate de que se envíe la cookie de sesión
-  });
+  return this.http.post('http://localhost:8080/api/v1/logout', {}, { withCredentials: true });
 }
+
 }
