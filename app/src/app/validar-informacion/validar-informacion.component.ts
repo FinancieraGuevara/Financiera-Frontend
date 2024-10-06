@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import{Solicitante} from '../../Clases/Solicitante/solicitante'
 import { FormsModule } from '@angular/forms';
 import { responseSolicitante } from './responseSolicitante';
+import {NavegadorComponent} from "../navegador/navegador.component";
 
 @Component({
   selector: 'app-validar-informacion',
@@ -19,7 +20,7 @@ export class ValidarInformacionComponent {
   dni: string;
   solicitanteData: Solicitante; // Aquí usas el tipo Solicitante directamente
   
-  constructor(private solicitanteService: SolicitanteService) {}
+  constructor(private solicitanteService: SolicitanteService, private router: Router) {}
   
   buscar() {
       if (this.dni) {
@@ -52,6 +53,10 @@ export class ValidarInformacionComponent {
     if (charCode < 48 || charCode > 57) {
       event.preventDefault();
     }
+  }
+
+  continue() {
+    this.router.navigate(['/private/consulta/prestamo']);
   }
 
 }

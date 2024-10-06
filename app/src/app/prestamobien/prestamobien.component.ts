@@ -3,6 +3,7 @@ import { Prestamo } from '../../Clases/Prestamo/prestamo';
 import { Router } from 'express';
 import { RouterOutlet } from '@angular/router';
 
+
 @Component({
   selector: 'app-prestamobien',
   standalone: true,
