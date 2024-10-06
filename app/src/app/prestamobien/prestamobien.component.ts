@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Prestamo } from '../../Clases/Prestamo/prestamo';
 import { Router } from 'express';
 import { RouterOutlet } from '@angular/router';
+import {NavegadorComponent} from "../navegador/navegador.component";
+
 
 
 @Component({
@@ -24,4 +26,6 @@ export class PrestamobienComponent {
   // get monto(): number {
   //   return this.prestamo.monto;
   // }
+
+  
 }
