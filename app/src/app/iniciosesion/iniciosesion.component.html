@@ -1,0 +1,29 @@
+<div class="login-container">
+  <h2 class="mb-4">Iniciar Sesión</h2>
+
+  <form [formGroup]="formUser" (ngSubmit)="enviar()">
+    <div class="mb-3">
+      <input type="email" class="form-control" formControlName="email" placeholder="Ingrese su correo" required>
+      <div class="alert alert-danger mt-2" [hidden]="email.valid || password.pristine">
+      <span *ngIf="email.errors?.['required']">
+                        El email es obligatorio
+                      </span>
+      <span *ngIf="email.errors?.['email']">
+                        El email no es valido
+                      </span>
+      </div>
+    </div>
+    <div class="mb-3">
+      <input type="password" class="form-control" formControlName="password" placeholder="Ingrese su contraseña">
+      <div class="alert alert-danger mt-2" [hidden]="password.valid || password.pristine">
+      <span *ngIf="password.errors?.['required']">
+                      La contraseña es obligatoria
+                    </span>
+      <span *ngIf="password.errors?.['minlength']">
+                      Su contraseña no puede ser menor a 8 caracteress
+                    </span>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-custom w-100" [disabled]="formUser.invalid">Iniciar sesión</button>
+  </form>
+</div>
