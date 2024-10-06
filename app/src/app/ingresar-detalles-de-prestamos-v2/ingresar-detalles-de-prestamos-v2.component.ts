@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-seleccionar-tipo-prestamo',
+  selector: 'app-ingresar-detalles-de-prestamos-v2',
   standalone: true,
   imports: [],
-  templateUrl: './seleccionar-tipo-prestamo.component.html',
-  styleUrl: './seleccionar-tipo-prestamo.component.scss'
+  templateUrl: './ingresar-detalles-de-prestamos-v2.component.html',
+  styleUrl: './ingresar-detalles-de-prestamos-v2.component.scss'
 })
-export class SeleccionarTipoPrestamoComponent {
+export class IngresarDetallesDePrestamosV2Component {
   // Método para validar que solo se ingresen números
   validateInput(event: KeyboardEvent) {
     const keyCode = event.keyCode ? event.keyCode : event.which;
