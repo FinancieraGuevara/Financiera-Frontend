@@ -8,18 +8,19 @@ import { PublicusersComponent } from './usuarios/publicusers/publicusers.compone
 import { IngresarDetallePrestamoComponent } from './ingresar-detalle-prestamo/ingresar-detalle-prestamo.component';
 import { IngresarDetallesDePrestamosV2Component } from './ingresar-detalles-de-prestamos-v2/ingresar-detalles-de-prestamos-v2.component';
 import { CronogramaDePagosComponent } from './cronograma-de-pagos/cronograma-de-pagos.component';
-
+import { PrestamobienComponent } from './prestamobien/prestamobien.component';
 
 export const routes: Routes = [
 
 
  //inicio apunta a cuerpo component
-  { path: 'private/consulta', component: ValidarInformacionComponent},
+ { path: 'private/consulta/prestamo/cronograma/bien', component: PrestamobienComponent },
+ { path: 'private/consulta/prestamo/cronograma', component: CronogramaDePagosComponent },
+ { path: 'private/consulta/prestamo', component: IngresarDetallesDePrestamosV2Component },
+ { path: 'private/consulta', component: ValidarInformacionComponent},
   { path: 'private/users', component: UsuariosComponent },
   { path: 'public/users', component: PublicusersComponent },
   { path: 'login', component: IniciosesionComponent },
-  { path: '**', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'prestamo', component: IngresarDetallesDePrestamosV2Component },
-  { path: 'cronograma', component: CronogramaDePagosComponent }
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
