@@ -1,0 +1,32 @@
+
+<div class="container">
+    
+    <h2 class="mt-4">Usuarios Privados</h2>
+    
+    <div *ngIf="users.length === 0" class="alert alert-info">
+      No hay usuarios disponibles.
+    </div>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre de Usuario</th>
+          <th>Rol</th>
+          <th>Password</th>
+        </tr>
+      </thead>
+      <tbody>
+        <div *ngIf="isLoading">Cargando usuarios...</div>
+        <div *ngIf="!isLoading">
+</div>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.role }}</td>
+          <td>{{ user.password }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button (click)="cerrarSesion()" class="btn btn-danger">Cerrar sesión</button>
+  </div>
