@@ -8,11 +8,13 @@ import {PiepaginaComponent} from "./piepagina/piepagina.component";
 import {NavegadorComponent} from "./navegador/navegador.component";
 import { CronogramaDePagosComponent } from "./cronograma-de-pagos/cronograma-de-pagos.component";
 import { IngresarDetallesDePrestamosV2Component } from "./ingresar-detalles-de-prestamos-v2/ingresar-detalles-de-prestamos-v2.component";
+import { PrestamobienComponent } from './prestamobien/prestamobien.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SeleccionarTipoPrestamoComponent, ValidarInformacionComponent, IngresarDetallePrestamoComponent, IniciosesionComponent, PiepaginaComponent, NavegadorComponent, CronogramaDePagosComponent, IngresarDetallesDePrestamosV2Component],
+  imports: [RouterOutlet, SeleccionarTipoPrestamoComponent, ValidarInformacionComponent, IngresarDetallePrestamoComponent, IniciosesionComponent, PiepaginaComponent, NavegadorComponent, CronogramaDePagosComponent, IngresarDetallesDePrestamosV2Component, PrestamobienComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
