@@ -1,24 +1,22 @@
 import { Component,OnInit  } from '@angular/core';
-import {UserService} from '../../Servicios/Usuario/user.service'
+import {UserService} from '../../../Servicios/Usuario/user.service'
 import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { User } from '../../Clases/Users/user';
+import { User } from '../../../Clases/Users/user';
 @Component({
-  selector: 'app-usuarios',
+  selector: 'app-publicusers',
   standalone: true,
   imports: [RouterOutlet,CommonModule],
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.scss']
+  templateUrl: './publicusers.component.html',
+  styleUrl: './publicusers.component.scss'
 })
-export class UsuariosComponent implements OnInit {
+export class PublicusersComponent {
   users: User[] = [];
-  
+  isLoading = true; // Agrega esta variable
   constructor(private userService: UserService, private router: Router) {}
 
-  isLoading = true; // Agrega esta variable
-
   ngOnInit(): void {
-    this.userService.getPrivateUsers().subscribe({
+    this.userService.getPublicUsers().subscribe({
       next: (data) => {
         this.users = data;
         this.isLoading = false; // Oculta el loader
@@ -33,17 +31,8 @@ export class UsuariosComponent implements OnInit {
       }
     });
   }
- // Método para cerrar sesión
- cerrarSesion() {
-  this.userService.logout().subscribe({
-      next: (response) => {
-          console.log('Sesión cerrada:', response);
-          this.router.navigate(['/public/users']);
-      },
-      error: (error) => {
-          console.error('Error al cerrar sesión:', error);
-        
-      }
-  });
-}
+  public IniciarSesion()
+  {
+    this.router.navigate(['/login']);
+  }
 }
