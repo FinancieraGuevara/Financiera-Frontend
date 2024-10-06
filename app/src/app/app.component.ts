@@ -6,11 +6,12 @@ import { IngresarDetallePrestamoComponent } from "./ingresar-detalle-prestamo/in
 import {IniciosesionComponent} from "./iniciosesion/iniciosesion.component";
 import {PiepaginaComponent} from "./piepagina/piepagina.component";
 import {NavegadorComponent} from "./navegador/navegador.component";
+import { CronogramaDePagosComponent } from "./cronograma-de-pagos/cronograma-de-pagos.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SeleccionarTipoPrestamoComponent, ValidarInformacionComponent, IngresarDetallePrestamoComponent,IniciosesionComponent, PiepaginaComponent, NavegadorComponent],
+  imports: [RouterOutlet, SeleccionarTipoPrestamoComponent, ValidarInformacionComponent, IngresarDetallePrestamoComponent, IniciosesionComponent, PiepaginaComponent, NavegadorComponent, CronogramaDePagosComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
