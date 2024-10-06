@@ -3,7 +3,6 @@ import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, V
 import { CommonModule } from '@angular/common';
 import {Router, RouterLink} from '@angular/router';
 import {UserService} from "../../Servicios/Usuario/user.service";
-import {LoginService} from "../../Servicios/LoginService";
 import {NavegadorComponent} from "../navegador/navegador.component";
 
 @Component({
@@ -11,46 +10,38 @@ import {NavegadorComponent} from "../navegador/navegador.component";
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, NavegadorComponent, RouterLink],
   templateUrl: './iniciosesion.component.html',
-  styleUrl: './iniciosesion.component.scss'
+  styleUrls: ['./iniciosesion.component.scss']
 })
 export class IniciosesionComponent {
   formUser: FormGroup;
 
-  constructor( private formBuilder: FormBuilder, private router: Router, private userService: UserService, private loginService: LoginService){
-
-    this.formUser = this.formBuilder.group({
-      'email': ['',[Validators.required,Validators.email]],
-      'password': ['',[Validators.required,Validators.minLength(8)]]
-    })
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
+    this.formUser = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(4)]]
+    });
   }
 
-  get email(){
-    return this.formUser.get('email') as FormControl;
-  }
+  ngOnInit(): void {}
 
-  get password(){
-    return this.formUser.get('password') as FormControl;
-  }
-
-  enviar(){
-    if(this.formUser.valid){
-      const userData = {
-        email: this.email.value,
-        password: this.password.value
-      };
-      console.log('Datos a enviar:', userData);
-      this.loginService.Onlogin(userData).subscribe({
-        next: (response: any) => {
-          console.log('Inicio exitoso:', response);
-          this.router.navigate(['/inicio']);
-        },
-        error: (error) => {
-          console.error('Error al iniciar:', error);
-          alert('Credenciales incorrectas.');
+  enviar() {
+    const { username, password } = this.formUser.value; // Obtener los valores del formulario
+  
+    this.userService.login(username, password).subscribe({
+      next: (response) => {
+        console.log('Inicio de sesión exitoso:', response);
+        // Guarda la sesión o token si es necesario
+        this.router.navigate(['/public/users']); // Redirigir después de iniciar sesión
+      },
+      error: (error) => {
+        console.error('Error en el inicio de sesión:', error);
+        // Maneja el error, por ejemplo, mostrando un mensaje al usuario
+        if (error.status === 302) {
+          // Manejo de redirección si es necesario
+          this.router.navigate(['/public/users']); // O la ruta deseada
         }
-      });
-    } else {
-      console.log('Formulario inválido');
-    }
+      }
+    });
   }
+  
 }
