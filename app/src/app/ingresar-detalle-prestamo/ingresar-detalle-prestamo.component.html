@@ -19,7 +19,7 @@
         <!-- Formulario -->
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <form (ngSubmit)="onSubmit()">
+                <form (ngSubmit)="onSubmit()" #prestamoForm="ngForm">
                     <!-- Campo de Ingreso de Monto -->
                     <div class="row mb-4">
                         <label for="monto" class="form-label text-center">Ingrese el monto</label>
@@ -58,7 +58,7 @@
 
                     <!-- Botón Continuar -->
                     <div class="row text-center my-4">
-                        <button type="submit" class="btn">Continuar</button>
+                        <button type="submit" class="btn" >Continuar</button>
                     </div>
                 </form>
             </div>
