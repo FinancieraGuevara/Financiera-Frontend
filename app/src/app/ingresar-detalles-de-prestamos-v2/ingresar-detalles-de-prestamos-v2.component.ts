@@ -13,10 +13,9 @@ import {NavegadorComponent} from "../navegador/navegador.component";
   styleUrl: './ingresar-detalles-de-prestamos-v2.component.scss'
 })
 export class IngresarDetallesDePrestamosV2Component {
-  
   inputValue: number = 0;
   isInputValid: boolean = false;
-  isTimeButtonSelected: boolean = false;
+  selectedTimeButton: string | null = null;
   isConfirmButtonDisabled: boolean = true;
 
   validateInput(event: KeyboardEvent) {
@@ -35,13 +34,17 @@ export class IngresarDetallesDePrestamosV2Component {
     this.updateConfirmButtonState();
   }
 
-  selectTime() {
-    this.isTimeButtonSelected = true;
+  selectTime(button: string) {
+    if (this.selectedTimeButton === button) {
+      this.selectedTimeButton = null;
+    } else {
+      this.selectedTimeButton = button;
+    }
     this.updateConfirmButtonState();
   }
 
   updateConfirmButtonState() {
-    this.isConfirmButtonDisabled = !(this.isInputValid && this.isTimeButtonSelected);
+    this.isConfirmButtonDisabled = !(this.isInputValid && this.selectedTimeButton !== null);
   }
   constructor(private router: Router) {}
 
