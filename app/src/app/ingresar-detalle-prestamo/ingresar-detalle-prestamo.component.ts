@@ -1,13 +1,45 @@
 import { Component } from '@angular/core';
+import { PrestamoService, PrestamoRequestDTO, PrestamoResponseDTO } from '../../Servicios/Prestamo/prestamo.service';
+import { HttpClientModule } from '@angular/common/http'; 
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-ingresar-detalle-prestamo',
   standalone: true,
-  imports: [],
+  imports: [HttpClientModule, FormsModule],
   templateUrl: './ingresar-detalle-prestamo.component.html',
   styleUrls: ['./ingresar-detalle-prestamo.component.scss']
 })
 export class IngresarDetallePrestamoComponent {
+  monto: number = 0; // Para enlazar con el campo input
+  cuotas: number = 0; 
+
+  constructor(private prestamoService: PrestamoService) {}
+
+  onSubmit(): void {
+    const prestamoRequest: PrestamoRequestDTO = {
+      monto: this.monto,
+      cuotas: this.cuotas
+    };
+
+    const solicitanteId = 1; // El ID del solicitante, ajusta según sea necesario
+    this.prestamoService.createPrestamo(solicitanteId, prestamoRequest).subscribe({
+      next: (response: PrestamoResponseDTO) => {
+        this.monto = response.monto;
+        this.cuotas = response.cuotas; 
+      },
+      error: (err) => {
+        console.error('Error al crear el préstamo:', err);
+      },
+    });
+  }
+  validateNumber(event: KeyboardEvent): void {
+    const charCode = event.key.charCodeAt(0);
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+  //////////////////////////////
 
   // Método para validar que solo se ingresen números
   validateInput(event: KeyboardEvent) {

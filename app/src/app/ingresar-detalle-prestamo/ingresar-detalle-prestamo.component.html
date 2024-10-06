@@ -10,29 +10,34 @@
 
     <!-- Contenido del formulario -->
     <div class="container d-flex flex-column justify-content-center">
-  
+
         <!-- Título -->
         <div class="row my-4">
             <h2 class="text-center">Ingrese los detalles del préstamo</h2>
         </div>
-  
+
         <!-- Formulario -->
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <form>
+                <form (ngSubmit)="onSubmit()">
                     <!-- Campo de Ingreso de Monto -->
                     <div class="row mb-4">
                         <label for="monto" class="form-label text-center">Ingrese el monto</label>
                         <div class="input-wrapper d-flex justify-content-center">
                             <div class="input-group">
                                 <span class="input-group-text">S/</span>
-                                <input type="text" id="monto" class="form-control monto-input" 
-                                       placeholder="Ingrese el monto" maxlength="10" 
-                                       (keypress)="validateInput($event)" 
-                                       (blur)="validatePositive($event)" required>
-                              </div>
-                              
-                              
+                                <input type="text" 
+                                        id="monto" 
+                                        class="form-control monto-input"
+                                        [(ngModel)]="monto"
+                                        name="monto"
+                                        placeholder="Ingrese el monto" 
+                                        maxlength="10" 
+                                        (keypress)="validateInput($event)"
+                                        (blur)="validatePositive($event)" required>
+                            </div>
+
+
                         </div>
                     </div>
 
@@ -41,16 +46,16 @@
                         <!-- Columna Cuota Mensual -->
                         <div class="col-md-6">
                             <h4>Cuota mensual</h4>
-                            <p>S/ XXX.XX</p>
+                            <p>S/ {{ cuotas }}</p>
                         </div>
 
                         <!-- Columna Pago Total -->
                         <div class="col-md-6">
                             <h4>Pago total</h4>
-                            <p>S/ XXX.XX</p>
+                            <p>S/ {{ monto }}</p>
                         </div>
                     </div>
-  
+
                     <!-- Botón Continuar -->
                     <div class="row text-center my-4">
                         <button type="submit" class="btn">Continuar</button>
@@ -58,6 +63,6 @@
                 </form>
             </div>
         </div>
-  
+
     </div>
 </div>

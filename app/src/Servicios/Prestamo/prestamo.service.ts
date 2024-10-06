@@ -2,17 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export interface PrestamoResponseDTO {
-  // Define aquí las propiedades que tu PrestamoResponseDTO contiene
+export interface PrestamoResponseDTO { 
   monto: number;
-  cuotaMensual: number;
-  pagoTotal: number;
+  cuotas: number; 
 }
 
-export interface PrestamoRequestDTO {
-  // Define las propiedades del objeto de solicitud
+export interface PrestamoRequestDTO { 
   monto: number;
-  // Otros campos requeridos...
+  cuotas: number
 }
 
 @Injectable({
@@ -20,7 +17,7 @@ export interface PrestamoRequestDTO {
 })
 export class PrestamoService {
 
-  private apiUrl = 'http://localhost:8080/api/v1'; // Cambia a tu URL base
+  private apiUrl = 'http://localhost:8080/api/v1';
 
   constructor(private http: HttpClient) {}
 
