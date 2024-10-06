@@ -30,7 +30,8 @@
 
                 </div>
                 <div class="col-4">
-                    <button class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"(click)="selectTime()" [disabled]="!isInputValid">
+                    <button class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"(click)="selectTime('1mes')" 
+                    [disabled]="!isInputValid || selectedTimeButton === '6meses'">
                         <div class="text-center fs-4 fw-bold">
                             1 mes
                         </div>
@@ -40,7 +41,8 @@
                     </button>
                 </div>
                 <div class="col-4">
-                    <button class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"(click)="selectTime()" [disabled]="!isInputValid">
+                    <button class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"(click)="selectTime('6meses')" 
+                    [disabled]="!isInputValid || selectedTimeButton === '1mes'">
                         <div class="text-center fs-4 fw-bold"  >
                             6 meses
                         </div>
@@ -50,20 +52,7 @@
                     </button>
                 </div>
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Cuota Mensual</th>
-                            <th scope="col">Pago Total</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider">
-                        <tr>
-                            <th scope="row">S/. 00.00</th>
-                            <td>S/. 00.00</td>
-                        </tr>
-                    </tbody>
-                </table>
+                
             </div>
 
             <div class="row v100 d-flex justify-content-center">
