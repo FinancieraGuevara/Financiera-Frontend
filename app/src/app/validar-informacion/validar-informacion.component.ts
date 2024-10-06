@@ -5,8 +5,10 @@ import { Router, RouterOutlet } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import{Solicitante} from '../../Clases/Solicitante/solicitante'
 import { FormsModule } from '@angular/forms';
+
 import { responseSolicitante } from './responseSolicitante';
 import {NavegadorComponent} from "../navegador/navegador.component";
+
 
 @Component({
   selector: 'app-validar-informacion',
@@ -20,7 +22,7 @@ export class ValidarInformacionComponent {
   dni: string;
   solicitanteData: Solicitante; // Aquí usas el tipo Solicitante directamente
   isLoading = true; // Agrega esta variable
-  
+ 
   constructor(private solicitanteService: SolicitanteService, private router: Router) {}
   
   buscar() {
@@ -52,8 +54,10 @@ export class ValidarInformacionComponent {
   // Método para enviar el formulario
   enviar() {
     if (this.solicitanteData) {
-      // Aquí puedes manejar la lógica de continuar con el proceso
-      console.log('Formulario enviado con datos del solicitante:', this.solicitanteData);
+      localStorage.setItem('dniSolicitante', this.dni); 
+      this.router.navigate(['/private/detallePrestamo']); 
+    } else {
+      alert('Por favor, busca un DNI válido antes de continuar.');
     }
   }
   validateNumber(event: KeyboardEvent): void {

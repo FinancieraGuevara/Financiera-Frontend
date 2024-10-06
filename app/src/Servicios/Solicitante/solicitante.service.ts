@@ -8,15 +8,29 @@ import { responseSolicitante } from '../../app/validar-informacion/responseSolic
   providedIn: 'root'
 })
 export class SolicitanteService {
-
+  private solicitanteData: Solicitante; 
   constructor(private http: HttpClient) {}
-  private apiUrl = 'http://localhost:8080/api/v1/private';
+  private apiUrl = 'http://localhost:8080/api/v1';
+
+  // Método para guardar datos del solicitante
+  setSolicitanteData(data: Solicitante): void {
+    this.solicitanteData = data;
+  }
+
+  // Método para obtener datos del solicitante
+  getSolicitanteData(): Solicitante {
+    return this.solicitanteData;
+  }
 
   getDataById(identifier: string, type: string): Observable<responseSolicitante<Solicitante>> {
-    const url = `${this.apiUrl}/consulta/${identifier}?type=${type}`;
+    const url = `${this.apiUrl}/private/consulta/${identifier}?type=${type}`;
     return this.http.get<responseSolicitante<Solicitante>>(url, {
-        withCredentials: true // Asegúrate de que esto esté dentro de las opciones
+        withCredentials: true
     });
+  }
+  getSolicitanteIdByDni(id: string): Observable<Solicitante> {
+    return this.http.get<Solicitante>(`${this.apiUrl}/solicitantes/searchByDni/${id}`);
 }
+
 
 }
