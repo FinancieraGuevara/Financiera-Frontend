@@ -105,3 +105,13 @@
         transform: scale(1.1);
     }
   }
+
+.download {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+
+    &:hover {
+        color: black; /* Example hover effect */
+    }
+}
