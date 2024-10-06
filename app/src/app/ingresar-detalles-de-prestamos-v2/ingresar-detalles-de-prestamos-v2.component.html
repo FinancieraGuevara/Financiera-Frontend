@@ -26,9 +26,11 @@
                         placeholder="s/" 
                         (keypress)="validateInput($event)" 
                         (input)="validatePositive($event)" />
+
+
                 </div>
                 <div class="col-4">
-                    <button class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light">
+                    <button class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"(click)="selectTime()" [disabled]="!isInputValid">
                         <div class="text-center fs-4 fw-bold">
                             1 mes
                         </div>
@@ -38,8 +40,8 @@
                     </button>
                 </div>
                 <div class="col-4">
-                    <button class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light">
-                        <div class="text-center fs-4 fw-bold">
+                    <button class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"(click)="selectTime()" [disabled]="!isInputValid">
+                        <div class="text-center fs-4 fw-bold"  >
                             6 meses
                         </div>
                         <div class="text-center">
@@ -66,7 +68,7 @@
 
             <div class="row v100 d-flex justify-content-center">
                 <div class="row w80 ">
-                    <button class="btn2 eb" (click)="continue()">Confirmar</button>
+                    <button class="btn2 eb" (click)="continue()" [disabled]="isConfirmButtonDisabled">Confirmar</button>
                 </div>
             </div>
         </div>
