@@ -1,0 +1,53 @@
+<!-- Flecha hacia atrás -->
+<div class="row m-0">
+    <div class="">
+        <a href="#" class="btn-atras text-reset m-0" style="padding: 0;">&lt;</a>
+    </div>
+</div>
+
+<!-- Contenido principal -->
+<div class="container-fluid d-flex flex-column justify-content-center min-vh-80 m-0">
+
+    <div class="container position-relative">
+  
+        <!-- Título -->
+        <div class="conainter">
+            <div class="row my-4">
+                <h2 class="text-center">Validaremos la información</h2>
+            </div>
+  
+            <!-- Formulario -->
+            <div class="row">
+                <div class="col-md-6 offset-md-3 form-container">
+                  <form>
+                    <!-- Campo DNI con botón a la derecha -->
+                    <div class="row mb-4">
+                        <label for="dni" class="form-label">Ingrese el DNI</label>
+                        <div class="input-group">
+                            <input type="text" id="dni" class="form-control dni-input" placeholder="DNI" maxlength="8" (keypress)="validateNumber($event)" required>
+                            <button class="btn btn-op" type="button">Buscar</button>
+                        </div>
+                    </div>
+  
+                    <!-- Información del cliente -->
+                    <div class="row informacion-cliente text-center my-4">
+                        <h4>Información del cliente</h4>
+                        <p>DNI: <span class="dni">79854612</span></p>
+                        <p>Nombre: <span class="nombre">Javier Alexander</span></p>
+                        <p>Apellido Paterno: <span class="apellido-paterno">Aguilar</span></p>
+                        <p>Apellido Materno: <span class="apellido-materno">Blas</span></p>
+                        <p>Código de verificación: <span class="codigo-verificacion">3</span></p>
+                    </div>
+  
+                    <!-- Botón Continuar -->
+                    <div class="row text-center my-4">
+                      <button type="submit" class="btn">Continuar</button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+  
+    </div>
+  
+</div>
