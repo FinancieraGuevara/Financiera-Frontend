@@ -19,25 +19,22 @@
             <!-- Formulario -->
             <div class="row">
                 <div class="col-md-6 offset-md-3 form-container">
-                  <form>
+                  <form (ngSubmit)="enviar()">
                     <!-- Campo DNI con botón a la derecha -->
                     <div class="row mb-4">
                         <label for="dni" class="form-label">Ingrese el DNI</label>
                         <div class="input-group">
-                            <input type="text" id="dni" class="form-control dni-input" placeholder="DNI" maxlength="8" (keypress)="validateNumber($event)" required>
-                            <button class="btn btn-op" type="button">Buscar</button>
+                            <input type="text" id="dni" class="form-control dni-input" placeholder="DNI" maxlength="8" (keypress)="validateNumber($event)" [(ngModel)]="dni" name="dni" required>
+                            <button class="btn btn-op" type="button" (click)="buscar()">Buscar</button>
                         </div>
                     </div>
   
                     <!-- Información del cliente -->
-                    <div class="row informacion-cliente text-center my-4">
-                        <h4>Información del cliente</h4>
-                        <p>DNI: <span class="dni">79854612</span></p>
-                        <p>Nombre: <span class="nombre">Javier Alexander</span></p>
-                        <p>Apellido Paterno: <span class="apellido-paterno">Aguilar</span></p>
-                        <p>Apellido Materno: <span class="apellido-materno">Blas</span></p>
-                        <p>Código de verificación: <span class="codigo-verificacion">3</span></p>
-                    </div>
+                    <p>DNI: <span class="dni">{{ solicitanteData.numero }}</span></p>
+                    <p>Apellido Paterno: <span class="apellido-paterno">{{ solicitanteData.apellido_paterno }}</span></p>
+                    <p>Nombre: <span class="nombre">{{ solicitanteData.nombres }}</span></p>
+                    <p>Código de verificación: <span class="codigo-verificacion">{{ solicitanteData.codigo_verificacion }}</span></p>
+                    <p>Apellido Materno: <span class="apellido-materno">{{ solicitanteData.apellido_materno }}</span></p>
   
                     <!-- Botón Continuar -->
                     <div class="row text-center my-4">
@@ -48,6 +45,5 @@
             </div>
         </div>
   
-    </div>
-  
+    </div> 
 </div>
