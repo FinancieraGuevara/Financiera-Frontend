@@ -28,7 +28,11 @@
                             <button class="btn btn-op" type="button" (click)="buscar()">Buscar</button>
                         </div>
                     </div>
-  
+                    <div *ngIf="isLoading" class="spinner-container">
+                        <div class="spinner"></div>
+                      </div>
+
+                    <div *ngIf="!isLoading">
                     <!-- Información del cliente -->
                     <p>DNI: <span class="dni">{{ solicitanteData.numero }}</span></p>
                     <p>Apellido Paterno: <span class="apellido-paterno">{{ solicitanteData.apellido_paterno }}</span></p>
@@ -40,10 +44,15 @@
                     <div class="row text-center my-4">
                       <button type="submit" class="btn">Continuar</button>
                     </div>
+                    </div>   
                   </form>
                 </div>
             </div>
         </div>
   
     </div> 
+    <!-- Alerta de error personalizada -->
+    <div class="custom-alert" *ngIf="showError">
+        Error: Hubo un problema al iniciar sesión.
+      </div>
 </div>

@@ -1,0 +1,20 @@
+.custom-alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #f5c6cb;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-size: 16px;
+    animation: fadeOut 3s forwards;
+  }
+  
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 0.8; }
+    100% { opacity: 0; }
+  }
+  
