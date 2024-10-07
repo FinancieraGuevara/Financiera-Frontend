@@ -27,4 +27,10 @@ export class PrestamoService {
       withCredentials: true
     });
   }
+  deletePrestamo(id: number) {
+    return this.http.delete(`${this.apiUrl}/${id}`, {
+      withCredentials: true
+    });
+  }
+
 }

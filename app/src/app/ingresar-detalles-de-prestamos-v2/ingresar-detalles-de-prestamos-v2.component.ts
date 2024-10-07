@@ -77,11 +77,13 @@ export class IngresarDetallesDePrestamosV2Component implements OnInit {
                 monto: this.prestamoForm.get('monto')?.value,
                 cuotas: this.selectedTimeButton,
               };
-
+              localStorage.setItem('solicitanteIdStr',String(this.solicitanteData.id))
               this.prestamoService.createPrestamo(solicitanteId, prestamoRequest).subscribe(
                 (response) => {
                   console.log('Préstamo creado:', response);
-                  
+                  // Guardar el ID del préstamo en el localStorage
+                  const prestamoId = response.id; // Asegúrate de que esta es la estructura correcta
+                  localStorage.setItem('prestamoId', prestamoId.toString());
                   // Obtener los detalles del préstamo
                   this.detallePrestamoService.getPrestamoDetails(solicitanteId).subscribe(
                     (detalles: any) => {

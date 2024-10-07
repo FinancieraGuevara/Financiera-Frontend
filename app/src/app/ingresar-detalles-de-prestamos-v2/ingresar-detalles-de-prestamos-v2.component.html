@@ -30,7 +30,7 @@
             <button type="button" 
                     class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"
                     (click)="prestamoForm.get('monto')?.value >= 500 ? selectTime(1) : null"
-                    [disabled]="prestamoForm.get('monto')?.value < 500 || selectedTimeButton === 1">
+                    [disabled]="prestamoForm.get('monto')?.value < 500 || prestamoForm.get('monto')?.value > 10000 || selectedTimeButton === 1">
               <div class="text-center fs-4 fw-bold">1</div>
               <div class="text-center fs-4 fw-bold">mes</div>
               <div class="text-center">10 % de interés</div>
@@ -41,7 +41,7 @@
             <button type="button" 
                     class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"
                     (click)="prestamoForm.get('monto')?.value >= 500 ? selectTime(6) : null"
-                    [disabled]="prestamoForm.get('monto')?.value < 500 || selectedTimeButton === 6">
+                    [disabled]="prestamoForm.get('monto')?.value < 500 || prestamoForm.get('monto')?.value > 10000  || selectedTimeButton === 6">
               <div class="text-center fs-4 fw-bold">6</div>
               <div class="text-center fs-4 fw-bold">meses</div>
               <div class="text-center">20 % de interés</div>

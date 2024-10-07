@@ -63,8 +63,16 @@ export class HistorialPagosComponent {
       return new Array(this.detallePrestamos.length).fill(false);
     }
   }
-
-  cerrarSesion(){
-    this.router.navigate(['/logut']);
+  cerrarSesion() {
+    this.detallePrestamoService.logout().subscribe({
+        next: (response) => {
+            console.log('Sesión cerrada:', response);
+            this.router.navigate(['/login']);
+        },
+        error: (error) => {
+            console.error('Error al cerrar sesión:', error);
+          
+        }
+    });
   }
 }

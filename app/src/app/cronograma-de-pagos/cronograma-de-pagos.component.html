@@ -1,7 +1,7 @@
 <div class="row">
     <div class="d-flex justify-content-center align-items-center">
         <div class="col-12 d-flex justify-content-center align-items-center">
-            <div class="flechita" (click)="continue2()">
+            <div class="flechita" (click)="continue2(); eliminarPrestamo()">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
                     <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="80" font-family="Arial" fill="black">&lt;</text>
                   </svg>
@@ -79,13 +79,13 @@
 
 
         </div>
-    
+
         <div class="row v100">
             <div class="row ">
                 <p class="text-end">Para ver su cronograma en formato PDF, descargue:</p>
             </div>
             <div class="row download">
-                <button class="btn eb" (click)="downloadPdf()">Descargar PDF</button>
+                <button class="btn eb" (click)="downloadPdf();">Descargar PDF</button>
             </div>
         </div>
 

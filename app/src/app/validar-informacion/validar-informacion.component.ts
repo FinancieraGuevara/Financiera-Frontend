@@ -67,9 +67,7 @@ export class ValidarInformacionComponent {
   continue() {
     if (this.solicitanteData) {
       localStorage.setItem('dniSolicitante', this.dni); 
-      localStorage.setItem('solicitanteIdStr', this.solicitanteData.id.toString());
       console.log("datos guardados",localStorage.getItem('dniSolicitante'));
-      console.log("datos guardados",localStorage.getItem('solicitanteIdStr'));
       this.router.navigate(['/private/consulta/prestamo']);
     } else {
       alert('Por favor, busca un DNI válido antes de continuar.');

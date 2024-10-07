@@ -9,7 +9,8 @@ import {NavegadorComponent} from "../navegador/navegador.component";
 import { HttpClient } from '@angular/common/http'; 
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-
+import {DetallePrestamoService} from '../../Servicios/detallePrestamo/detalle-prestamo.service'
+import { PrestamoService } from '../../Servicios/Prestamo/prestamo.service';
 
 @Component({
   selector: 'app-cronograma-de-pagos',
@@ -21,7 +22,8 @@ import { of } from 'rxjs';
 
 export class CronogramaDePagosComponent implements OnInit {
   ultimoDetallePrestamo: DetallePrestamo | null = null;
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient,private detallePrestamoService: DetallePrestamoService,
+    private prestamoService:PrestamoService) {}
 
   ngOnInit(): void {
     const ultimoDetalle = localStorage.getItem('ultimoDetallePrestamo');
@@ -41,32 +43,40 @@ export class CronogramaDePagosComponent implements OnInit {
     this.router.navigate(['/private/consulta/prestamo']);
   }
   downloadPdf() {
-    // Recuperar el ID del solicitante desde localStorage
-    const solicitanteId = localStorage.getItem('solicitanteIdStr');
-
-    // URL del endpoint de descarga del PDF
-    const url = `https://financiera-back-2a2b.onrender.com/api/v1/reports/pdf/${solicitanteId}`;
-
-    // Hacer la solicitud HTTP para descargar el PDF
-    this.http.get(url, { responseType: 'blob' })
-      .pipe(
-        tap((response: Blob) => {
+    const solicitanteIdStr = localStorage.getItem('solicitanteIdStr');
+    const solicitanteId = parseInt(solicitanteIdStr!, 10);
+    if (solicitanteId !== null) {
+      this.detallePrestamoService.exportPDF(solicitanteId).subscribe((response) =>{
           const blob = new Blob([response], { type: 'application/pdf' });
-          const downloadUrl = window.URL.createObjectURL(blob);
-
+          const url = window.URL.createObjectURL(blob);
           const a = document.createElement('a');
-          a.href = downloadUrl;
-          a.download = `Cronograma_${solicitanteId}.pdf`; // Nombre del archivo
+          a.href = url;
+          a.download = 'reporte.pdf';
           a.click();
+          window.URL.revokeObjectURL(url);
+      });
+    } else {
+      console.error('No se encontró el solicitanteId en localStorage');
+    }
+  }
 
-          window.URL.revokeObjectURL(downloadUrl); // Liberar memoria
-        }),
-        catchError(error => {
-          console.error('Error al descargar el PDF:', error);
-          return of(null); // Manejo de error
-        })
-      )
-      .subscribe();
+  eliminarPrestamo(): void {
+    const prestamoId = localStorage.getItem('prestamoId');
+    console.log('ID del préstamo:', prestamoId);
+    if (prestamoId) {
+      this.prestamoService.deletePrestamo(Number(prestamoId)).subscribe(
+        () => {
+          console.log('Prestamo eliminado exitosamente');
+          // Aquí puedes agregar lógica adicional, como redirigir al usuario o mostrar un mensaje
+        },
+        (error: any) => {
+          console.error('Error al eliminar el prestamo', error);
+          // Aquí puedes manejar el error, como mostrar un mensaje al usuario
+        }
+      );
+    } else {
+      console.error('No se encontró el ID del préstamo en el localStorage.');
+    }
   }
 }
 
