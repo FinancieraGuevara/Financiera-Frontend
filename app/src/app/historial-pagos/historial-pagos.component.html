@@ -1,0 +1,27 @@
+<div class="container">
+    <h1 class="text-center fw-semibold fst-italic">HISTORIAL DE PRESTAMOS REALIZADOS</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">N° Cronograma</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Detalle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detallePrestamo of detallePrestamos">
+            <th scope="row">{{ detallePrestamo.detailId }}</th>
+            <td>{{ detallePrestamo.fechaInicio }}</td>
+            <td><p class="text-success d-inline me-5">Activo</p>
+                <button class="btn btn-danger ms-5">Finalizar</button>
+            </td>
+            <td>
+              <button class="btn btn-outline-warning text-center" (click)="mostrarDetalle(detallePrestamo)">
+                <i class="fa-solid fa-arrow-down"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

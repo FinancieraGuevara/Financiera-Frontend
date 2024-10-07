@@ -1,7 +1,6 @@
 export class Prestamo {
-    Monto : number;
-   Cuotas: number;
-   Interes: number;
-
-
+    id: number;
+    monto : number;
+    cuotas: number;
+    interes: number;
 }
