@@ -25,6 +25,5 @@ export const routes: Routes = [
   { path: 'private/historialprestamos', component: HistorialPagosComponent},
   { path: 'login', component: IniciosesionComponent },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
-
 ];
 
