@@ -23,18 +23,18 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    <p class="er et" >Moneda: s/<span></span></p>
+                    <p class="er et" >Moneda: Soles</p>
                 </div>
                 <div class="col-6">
-                    <p class="color et">Monto de préstamo: s/<span></span></p>
+                    <p class="color et">Monto de préstamo: s/<span>{{ ultimoDetallePrestamo?.prestamo?.monto }}</span></p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
-                    <p class="er et" >Plaz (N° de cuotas): <span class=""></span></p>
+                    <p class="er et">Plazo (N° de cuotas): <span>{{ ultimoDetallePrestamo?.cronograma?.length }}</span></p>
                 </div>
                 <div class="col-6">
-                    <p class="color et">Monto total a pagar: S/<span class="negro"></span> </p>
+                    <p class="color et">Monto total a pagar: S/<span class="negro">{{ ultimoDetallePrestamo?.pagarTotal }}</span></p>
                 </div>
             </div>
     
@@ -64,15 +64,17 @@
             
 
             <div class="row vw80 cuota text-center eb">
-                <div class="col-4 ">
-                    <p class="n-cuota">1</p>
-                </div>
-                <div class="col-4">
-                    <p class="fecha-cuota">xxxx-xx-xx</p>
-                </div>
-                <div class="col-4">
-                    <p>S/<span class="monto-cuota">xxx.xx</span></p>
-                </div>
+                <div *ngFor="let cronograma of ultimoDetallePrestamo?.cronograma" class="row">
+                    <div class="col-4">
+                      <p class="n-cuota">{{ cronograma.nmrcuota }}</p>
+                    </div>
+                    <div class="col-4">
+                      <p class="fecha-cuota">{{ cronograma.fechaPago }}</p>
+                    </div>
+                    <div class="col-4">
+                      <p>S/<span class="monto-cuota">{{ cronograma.cuota }}</span></p>
+                    </div>
+                  </div>
             </div>
 
 
