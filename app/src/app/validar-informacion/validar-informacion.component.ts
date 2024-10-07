@@ -20,8 +20,8 @@ import {NavegadorComponent} from "../navegador/navegador.component";
 export class ValidarInformacionComponent {
   showError: boolean = false;
   dni: string;
-  solicitanteData: Solicitante; // Aquí usas el tipo Solicitante directamente
-  isLoading = true; // Agrega esta variable
+  solicitanteData: Solicitante; 
+  isLoading = true; 
  
   constructor(private solicitanteService: SolicitanteService, private router: Router) {}
   
@@ -51,24 +51,20 @@ export class ValidarInformacionComponent {
       }
   }
 
-  // Método para enviar el formulario
-  enviar() {
-    if (this.solicitanteData) {
-      localStorage.setItem('dniSolicitante', this.dni); 
-      this.router.navigate(['/private/detallePrestamo']); 
-    } else {
-      alert('Por favor, busca un DNI válido antes de continuar.');
-    }
-  }
   validateNumber(event: KeyboardEvent): void {
     const charCode = event.key.charCodeAt(0);
     if (charCode < 48 || charCode > 57) {
       event.preventDefault();
     }
   }
-
   continue() {
-    this.router.navigate(['/private/consulta/prestamo']);
+    if (this.solicitanteData) {
+      localStorage.setItem('dniSolicitante', this.dni); 
+      console.log("datos guardados",localStorage.getItem('dniSolicitante'));
+      this.router.navigate(['/private/consulta/prestamo']);
+    } else {
+      alert('Por favor, busca un DNI válido antes de continuar.');
+    }
   }
 
 }

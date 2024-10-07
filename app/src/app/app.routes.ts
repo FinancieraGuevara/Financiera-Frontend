@@ -23,7 +23,7 @@ export const routes: Routes = [
   { path: 'public/users', component: PublicusersComponent },
   { path: 'private/detallePrestamo', component: IngresarDetallePrestamoComponent},
   { path: 'login', component: IniciosesionComponent },
-  { path: 'historialpagos', component: HistorialPagosComponent}
+  { path: 'historialpagos', component: HistorialPagosComponent},
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
 
 ];

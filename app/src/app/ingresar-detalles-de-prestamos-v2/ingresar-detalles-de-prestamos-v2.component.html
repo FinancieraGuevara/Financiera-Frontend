@@ -1,67 +1,60 @@
 <div class="row">
     <div class="d-flex justify-content-center align-items-center">
-        <div class="col-12 d-flex justify-content-center align-items-center">
-            <div class="flechita" (click)="continue2()">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-                    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="80" font-family="Arial" fill="black">&lt;</text>
-                </svg>
-            </div>
-            <h2 class="h100">Ingrese los detalles del préstamo</h2>
+      <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="flechita" (click)="volver()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="80" font-family="Arial" fill="black">&lt;</text>
+          </svg>
         </div>
+        <h2 class="h100">Ingrese los detalles del préstamo</h2>
+      </div>
     </div>
-</div>
-
-<div class="container w100 d-flex justify-content-center">
+  </div>
+  
+  <div class="container w100 d-flex justify-content-center">
     <div class="container">
-        <div class="row">
-            <div class="row">
-                <h4>Ingrese el monto</h4>
+      <form [formGroup]="prestamoForm" (ngSubmit)="continue()">
+        <div class="row d-flex justify-content-center eb container-fluid">
+          <div class="col-4">
+            <input type="text" 
+                   class="form-control" 
+                   placeholder="s/" 
+                   formControlName="monto"  
+                   (keypress)="validateInput($event)" />
+            <div *ngIf="prestamoForm.get('monto')?.invalid && prestamoForm.get('monto')?.touched" class="text-danger">
+              El monto debe ser mayor o igual a 500.
             </div>
-        
-            <div class="row d-flex justify-content-center eb container-fluid ">
-                <div class="col-4">
-                    <input 
-                        type="text" 
-                        class="form-control" 
-                        placeholder="s/" 
-                        (keypress)="validateInput($event)" 
-                        (input)="validatePositive($event)" />
-
-
-                </div>
-                <div class="col-4">
-                    <button class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"(click)="selectTime('1mes')" 
-                    [disabled]="!isInputValid || selectedTimeButton === '6meses'">
-                        <div class="text-center fs-4 fw-bold">
-                            1 mes
-                        </div>
-                        <div class="text-center">
-                            10 % de interés
-                        </div>
-                    </button>
-                </div>
-                <div class="col-4">
-                    <button class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"(click)="selectTime('6meses')" 
-                    [disabled]="!isInputValid || selectedTimeButton === '1mes'">
-                        <div class="text-center fs-4 fw-bold"  >
-                            6 meses
-                        </div>
-                        <div class="text-center">
-                            20 % de interés
-                        </div>
-                    </button>
-                </div>
-
-                
-            </div>
-
-            <div class="row v100 d-flex justify-content-center">
-                <div class="row w80 ">
-                    <button class="btn2 eb" (click)="continue()" [disabled]="isConfirmButtonDisabled">Confirmar</button>
-                </div>
-            </div>
+          </div>
+  
+          <div class="col-4">
+            <button type="button" 
+                    class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"
+                    (click)="prestamoForm.get('monto')?.value >= 500 ? selectTime('1') : null"
+                    [disabled]="prestamoForm.get('monto')?.value < 500 || selectedTimeButton === '1'">
+              <div class="text-center fs-4 fw-bold">1</div>
+              <div class="text-center fs-4 fw-bold">mes</div>
+              <div class="text-center">10 % de interés</div>
+            </button>
+          </div>
+  
+          <div class="col-4">
+            <button type="button" 
+                    class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"
+                    (click)="prestamoForm.get('monto')?.value >= 500 ? selectTime('6') : null"
+                    [disabled]="prestamoForm.get('monto')?.value < 500 || selectedTimeButton === '6'">
+              <div class="text-center fs-4 fw-bold">6</div>
+              <div class="text-center fs-4 fw-bold">meses</div>
+              <div class="text-center">20 % de interés</div>
+            </button>
+          </div>
         </div>
+  
+        <div class="row v100 d-flex justify-content-center">
+          <div class="row w80">
+            <button class="btn2 eb" type="submit" 
+        [disabled]="prestamoForm.invalid || !selectedTimeButton">Confirmar</button>
+          </div>
+        </div>
+      </form>
     </div>
-</div>
-
-<div class="row w-100 d-flex justify-content-around"></div>
+  </div>

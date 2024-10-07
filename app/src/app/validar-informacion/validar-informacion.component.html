@@ -19,7 +19,7 @@
             <!-- Formulario -->
             <div class="row">
                 <div class="col-md-6 offset-md-3 form-container">
-                  <form (ngSubmit)="enviar()">
+                  <form (ngSubmit)="continue()">
                     <!-- Campo DNI con botón a la derecha -->
                     <div class="row mb-4">
                         <label for="dni" class="form-label">Ingrese el DNI</label>
@@ -36,15 +36,15 @@
                     <!-- Información del cliente -->
                     <p>DNI: <span class="dni">{{ solicitanteData.numero }}</span></p>
                     <p>Apellido Paterno: <span class="apellido-paterno">{{ solicitanteData.apellido_paterno }}</span></p>
+                    <p>Apellido Materno: <span class="apellido-materno">{{ solicitanteData.apellido_materno }}</span></p>
                     <p>Nombre: <span class="nombre">{{ solicitanteData.nombres }}</span></p>
                     <p>Código de verificación: <span class="codigo-verificacion">{{ solicitanteData.codigo_verificacion }}</span></p>
-                    <p>Apellido Materno: <span class="apellido-materno">{{ solicitanteData.apellido_materno }}</span></p>
-  
                     <!-- Botón Continuar -->
                     <div class="row text-center my-4">
 
-                      <button type="submit" class="btn" (click)="continue()">Continuar</button>
+                     
                     </div>
+                    <button type="submit" class="btn" (click)="continue()">Continuar</button>
                     </div>   
                   </form>
                 </div>
