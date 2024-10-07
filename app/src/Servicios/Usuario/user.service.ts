@@ -18,7 +18,7 @@ export class UserService {
       headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' }),
       withCredentials: true  // Para enviar cookies de sesión
     });
-}
+  }
 
   // GET para obtener los usuarios privados
   getPrivateUsers(): Observable<any> {
@@ -28,14 +28,15 @@ export class UserService {
   }
 
     // GET para obtener los usuarios publicos
-    getPublicUsers(): Observable<any> {
-      return this.http.get<any>(`${this.apiUrl}/public/users`, {
-        withCredentials: true  // Envía la cookie de sesión con la solicitud
-      });
-    }
- // Método para cerrar sesión
- logout(): Observable<any> {
-  return this.http.post('http://localhost:8080/api/v1/logout', {}, { withCredentials: true });
-}
+  getPublicUsers(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/public/users`, {
+      withCredentials: true  // Envía la cookie de sesión con la solicitud
+    });
+  }
+
+  // Método para cerrar sesión
+  logout(): Observable<any> {
+  return this.http.post('https://financiera-back-2a2b.onrender.com/api/v1/logout', {}, { withCredentials: true });
+  }
 
 }

@@ -36,7 +36,7 @@ export class IniciosesionComponent {
       next: (response) => {
         console.log('Inicio de sesión exitoso:', response);
         // Guarda la sesión o token si es necesario
-        this.router.navigate(['/private/consulta']); // Redirigir después de iniciar sesión
+        this.router.navigate(['/private/historialprestamos']); // Redirigir después de iniciar sesión
       },
       error: (error) => {
         
