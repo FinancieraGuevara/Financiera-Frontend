@@ -17,7 +17,7 @@ export class DetallePrestamoService {
 
   getAllDetallePrestamos(): Observable<DetallePrestamo[]> {
     console.log('Realizando solicitud GET a:', this.apiUrl);
-    return this.http.get<DetallePrestamo[]>(`${this.apiUrl}`).pipe(
+     return this.http.get<DetallePrestamo[]>(this.apiUrl,{withCredentials: true}).pipe(
       catchError((error: HttpErrorResponse) => {
         let errorMessage = 'Error al obtener la lista de detalles de préstamos';
         if (error.error instanceof ErrorEvent) {
@@ -33,8 +33,8 @@ export class DetallePrestamoService {
     );
   }
 
-  getDetallePrestamo(id: number): Observable<DetallePrestamo> {
-    return this.http.get<DetallePrestamo>(`${this.apiUrl}/${id}`).pipe(
+  getDetallePrestamo(solicitanteId: number): Observable<DetallePrestamo> {
+    return this.http.get<DetallePrestamo>(`${this.apiUrl}/${solicitanteId}`,{withCredentials: true}).pipe(
       catchError((error: HttpErrorResponse) => {
         let errorMessage = 'Ocurrió un error al obtener el detalle del prestamo';
           if (error.error instanceof ErrorEvent) {
