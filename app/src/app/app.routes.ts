@@ -22,9 +22,8 @@ export const routes: Routes = [
   { path: 'private/users', component: UsuariosComponent },
   { path: 'public/users', component: PublicusersComponent },
   { path: 'private/detallePrestamo', component: IngresarDetallePrestamoComponent},
+  { path: 'private/historialprestamos', component: HistorialPagosComponent},
   { path: 'login', component: IniciosesionComponent },
-  { path: 'historialpagos', component: HistorialPagosComponent},
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
-
 ];
 

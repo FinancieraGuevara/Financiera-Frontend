@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {SolicitanteService} from '../../Servicios/Solicitante/solicitante.service'
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet , RouterLink} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import{Solicitante} from '../../Clases/Solicitante/solicitante'
 import { FormsModule } from '@angular/forms';
@@ -13,7 +13,7 @@ import {NavegadorComponent} from "../navegador/navegador.component";
 @Component({
   selector: 'app-validar-informacion',
   standalone: true,
-  imports: [CommonModule,RouterOutlet, FormsModule],
+  imports: [CommonModule,RouterOutlet, FormsModule, RouterLink],
   templateUrl: './validar-informacion.component.html',
   styleUrl: './validar-informacion.component.scss'
   

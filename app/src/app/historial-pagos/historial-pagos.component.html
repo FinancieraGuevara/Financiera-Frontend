@@ -1,5 +1,13 @@
-<div class="container">
-    <h1 class="text-center fw-semibold fst-italic">HISTORIAL DE PRESTAMOS REALIZADOS</h1>
+<div class="container-fluid row fw-semibold fst-italic">
+
+  <div class="col-md-2 ">
+    <button class="btn btn-outline-dark rounded-end-pill fw-semibold fst-italic mb-3 fs-5 butons">Historial de Prestamos <i class="fa-solid fa-file-invoice-dollar fa-lg"></i></button>
+    <button class="btn btn-outline-dark rounded-end-pill fw-semibold fst-italic mt-3 fs-5 butons" (click)="realizarPrestamo()">Realizar Prestamos <i class="fa-solid fa-gun me-2 fa-lg"></i><i class="fa-solid fa-droplet me-2 fa-lg"></i><i class="fa-solid fa-hand-holding-dollar fa-lg"></i></button>
+    <button class="btn btn-outline-dark rounded-end-pill fw-semibold fst-italic cerrarbtn" (click)="cerrarSesion()"> Cerrar Sesion</button>
+  </div>
+
+  <div class="col-md-10">
+    <h1 class="text-center ">HISTORIAL DE PRESTAMOS REALIZADOS</h1>
       <table class="table">
         <thead>
           <tr>
@@ -10,11 +18,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let detallePrestamo of detallePrestamos">
-            <th scope="row">{{ detallePrestamo.detailId }}</th>
+          <tr *ngFor="let detallePrestamo of detallePrestamos, let i = index">
+            <th>{{ detallePrestamo.detailId }}</th>
             <td>{{ detallePrestamo.fechaInicio }}</td>
-            <td><p class="text-success d-inline me-5">Activo</p>
-                <button class="btn btn-danger ms-5">Finalizar</button>
+             <td><!--<p class="text-success d-inline me-5">Activo</p> -->
+                <p [ngClass]="finalizados[i] ? 'text-danger' : 'text-success'" class="d-inline me-5">{{ finalizados[i] ? 'Finalizado' : 'Activo' }}</p>
+                <button class="btn btn-danger ms-5" (click)="finalizarPrestamo(i)" [ngClass]="finalizados[i] ? 'disabled' : '' ">Finalizar</button>
             </td>
             <td>
               <button class="btn btn-outline-warning text-center" (click)="mostrarDetalle(detallePrestamo)">
@@ -24,4 +33,51 @@
           </tr>
         </tbody>
       </table>
+      <div class="row mt-4" *ngIf="detalleSeleccionado">
+        
+        <h3>Detalle del Préstamo Seleccionado</h3>
+        <p><strong>ID:</strong> {{ detalleSeleccionado.detailId }}</p>
+        <p><strong>Fecha de Inicio:</strong> {{ detalleSeleccionado.fechaInicio }}</p>
+        <p><strong>Estado:</strong> {{ finalizados[detallePrestamos.indexOf(detalleSeleccionado)] ? 'Finalizado' : 'Activo' }}</p>
+        <p><strong>Pagar Total:</strong> {{ detalleSeleccionado.pagarTotal}} </p>
+        <p><strong>Interes Total:</strong> {{ detalleSeleccionado.interesTotal}} </p>
+
+        <div class="col-md-6">
+          <h2>SOLICITANTE</h2>
+          <p><strong>DNI:</strong> {{ detalleSeleccionado.solicitante.numero}}</p>
+          <p><strong>Nombre:</strong> {{ detalleSeleccionado.solicitante.nombres }}</p>
+          <p><strong>Apellido Paterno:</strong> {{ detalleSeleccionado.solicitante.apellido_paterno }}</p>
+          <p><strong>Apellido Materno:</strong> {{ detalleSeleccionado.solicitante.apellido_materno }}</p>
+        </div>
+
+        <div class="col-md-6">
+          <h2>PRESTAMO</h2>
+          <p><strong>Monto:</strong> {{ detalleSeleccionado.prestamo.monto }}</p>
+          <p><strong>Cuotas:</strong> {{ detalleSeleccionado.prestamo.cuotas }}</p>
+          <p><strong>Tasa de Interés:</strong> {{ detalleSeleccionado.prestamo.interes }}</p>
+        </div>
+
+        <h2>CRONOGRAMA</h2>
+        <div *ngIf="detalleSeleccionado.cronograma && detalleSeleccionado.cronograma.length > 0">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">N° Cuota</th>
+                <th scope="col">Monto Cuota</th>
+                <th scope="col">Fecha de Pago</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Iterar sobre el cronograma para mostrar cada cuota -->
+              <tr *ngFor="let cuota of detalleSeleccionado.cronograma">
+                <td>{{ cuota.nmrcuota }}</td>
+                <td>{{ cuota.cuota }}</td>
+                <td>{{ cuota.fechaPago }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+  </div>
 </div>
