@@ -1,37 +1,38 @@
-import {Router, RouterLink} from '@angular/router';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsModule
-import { Prestamo } from '../../Clases/Prestamo/prestamo';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PrestamoService } from '../../Servicios/Prestamo/prestamo.service'; 
-import {Prestamorequest} from '../../Clases/PrestamoRequest/prestamorequest';
+import { Prestamorequest } from '../../Clases/PrestamoRequest/prestamorequest';
 import { SolicitanteService } from '../../Servicios/Solicitante/solicitante.service';
-import { FormsModule } from '@angular/forms'; // Asegúrate de importar FormsModule
 import { responseSolicitante } from '../validar-informacion/responseSolicitante';
 import { Solicitante } from '../../Clases/Solicitante/solicitante';
+import { DetallePrestamoService } from '../../Servicios/detallePrestamo/detalle-prestamo.service';
 @Component({
   selector: 'app-ingresar-detalles-de-prestamos-v2',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './ingresar-detalles-de-prestamos-v2.component.html',
-  styleUrl: './ingresar-detalles-de-prestamos-v2.component.scss'
+  styleUrls: ['./ingresar-detalles-de-prestamos-v2.component.scss']
 })
-export class IngresarDetallesDePrestamosV2Component {
+export class IngresarDetallesDePrestamosV2Component implements OnInit {
   
   dniSolicitante: string = localStorage.getItem('dniSolicitante') || '';
   isInputValid: boolean = false;
   isConfirmButtonDisabled: boolean = true;
   monto: number = 0;
-  selectedTimeButton: number =0;
+  selectedTimeButton: number = 0;
   prestamoForm: FormGroup;
   showError: boolean = false;
-  solicitanteData: Solicitante | null = null; // Aquí declaras la propiedad
-  constructor(private fb: FormBuilder , 
-    private router : Router,
-    private prestamoService : PrestamoService,
-    private solicitanteService : SolicitanteService, private formsModule : FormsModule
+  solicitanteData: Solicitante | null = null;
+
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router,
+    private prestamoService: PrestamoService,
+    private solicitanteService: SolicitanteService,
+    private detallePrestamoService: DetallePrestamoService
   ) {}
 
   ngOnInit(): void {
@@ -54,83 +55,101 @@ export class IngresarDetallesDePrestamosV2Component {
 
   onSubmit(): void {
     if (this.prestamoForm.valid) {
-     
+      // Lógica para enviar el formulario
     }
-}
- 
-continue() {
-  const dniSolicitante = localStorage.getItem('dniSolicitante'); 
-  
-  if (dniSolicitante) {
-    this.solicitanteService.getDataById(dniSolicitante, 'dni').subscribe({
-      next: (response: responseSolicitante<Solicitante>) => {
-        if (response && response.data) {
-          this.solicitanteData = response.data;
-          localStorage.setItem('dniSolicitante', dniSolicitante);
-          console.log("Datos del solicitante guardados", this.solicitanteData);
-          
-          // Verifica que solicitanteData tenga un ID válido antes de continuar
-          const solicitanteId = this.solicitanteData.id;
-          if (solicitanteId) {
-            const prestamoRequest: Prestamorequest = {
-              monto: this.prestamoForm.get('monto')?.value,
-              cuotas: this.selectedTimeButton,
-            };
-
-            this.prestamoService.createPrestamo(solicitanteId, prestamoRequest).subscribe(
-              (response) => {
-                console.log('Préstamo creado:', response);
-                this.router.navigate(['/private/consulta/prestamo/cronograma']);
-              },
-              (error) => {
-                console.error('Error al crear el préstamo:', error);
-              }
-            );
-          } else {
-            alert('Error: El ID del solicitante no es válido.');
-          }
-        } else {
-          alert('Error al obtener los datos del solicitante.');
-        }
-      },
-      error: (error) => {
-        console.error('Error obteniendo los datos del solicitante', error);
-        alert("Error al obtener los datos del solicitante.");
-      }
-    });
-  } else {
-    alert('Por favor, busca un DNI válido antes de continuar.');
   }
-}
 
-  volver() {
-    this.router.navigate(['/private/consulta']);
-  } 
-  buscar() {
+  continue(): void {
     const dniSolicitante = localStorage.getItem('dniSolicitante'); 
     
     if (dniSolicitante) {
-        this.solicitanteService.getDataById(dniSolicitante, 'dni').subscribe({
-            next: (response: responseSolicitante<Solicitante>) => {
-                if (response && response.data) {
-                    this.solicitanteData = response.data;
-                    console.log('Datos del solicitante:', this.solicitanteData); 
-                    // Verifica que se ha obtenido el ID del solicitante correctamente
-                    if (this.solicitanteData.id) {
-                        console.log('ID del solicitante:', this.solicitanteData.id);
-                        // Puedes continuar con la lógica del préstamo aquí si es necesario
+      this.solicitanteService.getDataById(dniSolicitante, 'dni').subscribe({
+        next: (response: responseSolicitante<Solicitante>) => {
+          if (response && response.data) {
+            this.solicitanteData = response.data;
+            localStorage.setItem('dniSolicitante', dniSolicitante);
+            console.log("Datos del solicitante guardados", this.solicitanteData);
+            
+            // Verifica que solicitanteData tenga un ID válido antes de continuar
+            const solicitanteId = this.solicitanteData.id;
+            if (solicitanteId) {
+              const prestamoRequest: Prestamorequest = {
+                monto: this.prestamoForm.get('monto')?.value,
+                cuotas: this.selectedTimeButton,
+              };
+
+              this.prestamoService.createPrestamo(solicitanteId, prestamoRequest).subscribe(
+                (response) => {
+                  console.log('Préstamo creado:', response);
+                  
+                  // Obtener los detalles del préstamo
+                  this.detallePrestamoService.getPrestamoDetails(solicitanteId).subscribe(
+                    (detalles: any) => {
+                      if (detalles && detalles.length > 0) {
+                        const ultimoDetalle = detalles[detalles.length - 1];
+                        console.log('Último detalle del préstamo:', ultimoDetalle);
+                        // Guardar el último detalle en el localStorage
+                        localStorage.setItem('ultimoDetallePrestamo', JSON.stringify(ultimoDetalle));
+                        // Navegar a la vista de cronograma de pagos
+                        this.router.navigate(['/private/consulta/prestamo/cronograma']);
+                      } else {
+                        console.error('No se encontraron detalles del préstamo.');
+                      }
+                    },
+                    (error: any) => {
+                      console.error('Error al obtener los detalles del préstamo:', error);
                     }
-                } else {
-                    alert("ERROR AL OBTENER LOS DATOS");
+                  );
+                },
+                (error) => {
+                  console.error('Error al crear el préstamo:', error);
                 }
-            },
-            error: (error) => {
-                console.error('Error obteniendo los datos del solicitante', error);
-                alert("ERROR: DATOS NO EXISTEN");
+              );
+            } else {
+              alert('Error: El ID del solicitante no es válido.');
             }
-        });
+          } else {
+            alert('Error al obtener los datos del solicitante.');
+          }
+        },
+        error: (error) => {
+          console.error('Error obteniendo los datos del solicitante', error);
+          alert("Error al obtener los datos del solicitante.");
+        }
+      });
     } else {
-        alert('No se encontró un DNI en el localStorage. Por favor, busca un solicitante primero.');
+      alert('Por favor, busca un DNI válido antes de continuar.');
     }
-}
+  }
+
+  volver(): void {
+    this.router.navigate(['/private/consulta']);
+  }
+
+  buscar(): void {
+    const dniSolicitante = localStorage.getItem('dniSolicitante'); 
+    
+    if (dniSolicitante) {
+      this.solicitanteService.getDataById(dniSolicitante, 'dni').subscribe({
+        next: (response: responseSolicitante<Solicitante>) => {
+          if (response && response.data) {
+            this.solicitanteData = response.data;
+            console.log('Datos del solicitante:', this.solicitanteData); 
+            if (this.solicitanteData.id) {
+              console.log('ID del solicitante:', this.solicitanteData.id);
+              // Puedes continuar con la lógica del préstamo aquí si es necesario
+            }
+          } else {
+            alert("ERROR AL OBTENER LOS DATOS");
+          }
+        },
+        error: (error) => {
+          console.error('Error obteniendo los datos del solicitante', error);
+          alert("ERROR: DATOS NO EXISTEN");
+        }
+      });
+    } else {
+      alert('No se encontró un DNI en el localStorage. Por favor, busca un solicitante primero.');
+    }
+  }
 }
