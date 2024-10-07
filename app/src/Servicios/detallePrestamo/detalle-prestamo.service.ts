@@ -11,7 +11,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class DetallePrestamoService {
 
-  private apiUrl = 'http://localhost:8080/api/v1/detalleprestamos';
+  private apiUrl = 'https://financiera-back-2a2b.onrender.com/api/v1/detalleprestamos';
 
   constructor(private http: HttpClient) {}
 
