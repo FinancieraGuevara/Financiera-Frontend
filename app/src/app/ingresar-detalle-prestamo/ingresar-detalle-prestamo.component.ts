@@ -1,13 +1,73 @@
 import { Component } from '@angular/core';
+import { PrestamoService, PrestamoRequestDTO, PrestamoResponseDTO } from '../../Servicios/Prestamo/prestamo.service';
+import { HttpClientModule } from '@angular/common/http'; 
+import { FormsModule } from '@angular/forms'; 
+import { SolicitanteService } from '../../Servicios/Solicitante/solicitante.service';  
+import { Solicitante } from '../../Clases/Solicitante/solicitante';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ingresar-detalle-prestamo',
   standalone: true,
-  imports: [],
+  imports: [HttpClientModule, FormsModule],
   templateUrl: './ingresar-detalle-prestamo.component.html',
   styleUrls: ['./ingresar-detalle-prestamo.component.scss']
 })
-export class IngresarDetallePrestamoComponent {
+export class IngresarDetallePrestamoComponent { 
+  dni: string;
+  solicitanteId: number;
+  solicitanteData: Solicitante;
+  monto: number = 0; 
+  cuotas: number = 6; ; 
+
+  constructor( 
+    private prestamoService: PrestamoService, 
+    private solicitanteService: SolicitanteService,
+    private router: Router
+  ) {}
+   
+  ngOnInit() {
+    this.dni = localStorage.getItem('dniSolicitante') ?? ''; // Recuperar el DNI, asignar una cadena vacía si es null
+    if (this.dni) {
+      this.obtenerSolicitanteData(); // Llamar al método para obtener los datos del solicitante
+    }
+  }
+   
+  obtenerSolicitanteData(): void {
+    this.solicitanteService.getSolicitanteIdByDni(this.dni).subscribe({
+      next: (data: Solicitante) => {
+        this.solicitanteData = data; // Asigna los datos obtenidos a solicitanteData
+        console.log('Datos del solicitante:', this.solicitanteData); // Para verificar que los datos se han cargado
+      },
+      error: (err: any) => {
+        console.error('Error al obtener datos del solicitante:', err);
+      }
+    });
+  }
+
+  onSubmit(): void {
+    const prestamoRequest: PrestamoRequestDTO = {
+      monto: this.monto,
+      cuotas: this.cuotas
+    };
+
+    this.prestamoService.createPrestamo(this.solicitanteData.id, prestamoRequest).subscribe({
+      next: (response: PrestamoResponseDTO) => {
+        console.log('Préstamo creado:', response); 
+        this.router.navigate(['/private/users']); 
+      },
+      error: (err) => {
+        console.error('Error al crear el préstamo:', err);
+      },
+    });
+  }
+  validateNumber(event: KeyboardEvent): void {
+    const charCode = event.key.charCodeAt(0);
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+  //////////////////////////////
 
   // Método para validar que solo se ingresen números
   validateInput(event: KeyboardEvent) {

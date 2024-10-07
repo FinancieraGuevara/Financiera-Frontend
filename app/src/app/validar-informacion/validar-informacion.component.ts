@@ -5,7 +5,10 @@ import { Router, RouterOutlet } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import{Solicitante} from '../../Clases/Solicitante/solicitante'
 import { FormsModule } from '@angular/forms';
+
 import { responseSolicitante } from './responseSolicitante';
+import {NavegadorComponent} from "../navegador/navegador.component";
+
 
 @Component({
   selector: 'app-validar-informacion',
@@ -15,26 +18,34 @@ import { responseSolicitante } from './responseSolicitante';
   styleUrl: './validar-informacion.component.scss'
 })
 export class ValidarInformacionComponent {
-
+  showError: boolean = false;
   dni: string;
   solicitanteData: Solicitante; // Aquí usas el tipo Solicitante directamente
-  
-  constructor(private solicitanteService: SolicitanteService) {}
+  isLoading = true; // Agrega esta variable
+ 
+  constructor(private solicitanteService: SolicitanteService, private router: Router) {}
   
   buscar() {
       if (this.dni) {
           this.solicitanteService.getDataById(this.dni, 'dni').subscribe({
               next: (response: responseSolicitante<Solicitante>) => { // Asegúrate de que response es de tipo responseSolicitante
-                  console.log('Respuesta de la API:', response); // Verifica la estructura real de la respuesta
+                    this.isLoading = false;
+                    console.log('Respuesta de la API:', response); // Verifica la estructura real de la respuesta
+                   // Oculta el loader
                   if (response && response.data) {
                       this.solicitanteData = response.data; // Ahora puedes asignar data a solicitanteData
                       console.log('Datos del solicitante:', this.solicitanteData); // Para verificar
                   } else {
+                    this.isLoading = false;
+                    alert("ERROR AL OBTENER LOS DATOS")
                       console.error('No se encontraron datos en la respuesta');
+                    
                   }
               },
               error: (error) => {
+               
                   console.error('Error obteniendo los datos del solicitante', error);
+                  alert("ERROR DATOS NO EXISTEN")
               }
           });
       }
@@ -43,8 +54,10 @@ export class ValidarInformacionComponent {
   // Método para enviar el formulario
   enviar() {
     if (this.solicitanteData) {
-      // Aquí puedes manejar la lógica de continuar con el proceso
-      console.log('Formulario enviado con datos del solicitante:', this.solicitanteData);
+      localStorage.setItem('dniSolicitante', this.dni); 
+      this.router.navigate(['/private/detallePrestamo']); 
+    } else {
+      alert('Por favor, busca un DNI válido antes de continuar.');
     }
   }
   validateNumber(event: KeyboardEvent): void {
@@ -52,6 +65,10 @@ export class ValidarInformacionComponent {
     if (charCode < 48 || charCode > 57) {
       event.preventDefault();
     }
+  }
+
+  continue() {
+    this.router.navigate(['/private/consulta/prestamo']);
   }
 
 }

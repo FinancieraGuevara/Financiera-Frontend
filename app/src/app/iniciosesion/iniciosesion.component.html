@@ -16,4 +16,9 @@
     </div>
     <button type="submit" class="btn btn-custom w-100" [disabled]="formUser.invalid">Iniciar sesión</button>
   </form>
+  <!-- Alerta de error personalizada -->
+  <div class="custom-alert" *ngIf="showError">
+    Error: Hubo un problema al iniciar sesión.
+  </div>
 </div>
+
