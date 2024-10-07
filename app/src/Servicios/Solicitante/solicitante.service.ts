@@ -10,7 +10,7 @@ import { responseSolicitante } from '../../app/validar-informacion/responseSolic
 export class SolicitanteService {
   private solicitanteData: Solicitante; 
   constructor(private http: HttpClient) {}
-  private apiUrl = 'http://localhost:8080/api/v1';
+  private apiUrl = 'https://financiera-back-2a2b.onrender.com/api/v1';
 
   // Método para guardar datos del solicitante
   setSolicitanteData(data: Solicitante): void {

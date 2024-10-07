@@ -17,7 +17,7 @@ export interface PrestamoRequestDTO {
 })
 export class PrestamoService {
 
-  private apiUrl = 'http://localhost:8080/api/v1';
+  private apiUrl = 'https://financiera-back-2a2b.onrender.com/api/v1';
 
   constructor(private http: HttpClient) {}
 
