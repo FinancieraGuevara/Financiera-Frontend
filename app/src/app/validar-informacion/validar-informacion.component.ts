@@ -16,14 +16,22 @@ import {NavegadorComponent} from "../navegador/navegador.component";
   imports: [CommonModule,RouterOutlet, FormsModule],
   templateUrl: './validar-informacion.component.html',
   styleUrl: './validar-informacion.component.scss'
+  
 })
 export class ValidarInformacionComponent {
   showError: boolean = false;
   dni: string;
-  solicitanteData: Solicitante; // Aquí usas el tipo Solicitante directamente
-  isLoading = true; // Agrega esta variable
- 
-  constructor(private solicitanteService: SolicitanteService, private router: Router) {}
+  solicitanteData: Solicitante; 
+  isLoading = true; 
+  prestamoForm: FormGroup;
+  fb: FormBuilder;
+  constructor(private solicitanteService: SolicitanteService, private router: Router, private formBuilder: FormBuilder) {
+    this.fb = formBuilder; // Inicializa fb aquí
+    this.prestamoForm = this.fb.group({
+      monto: [null, [Validators.required, Validators.min(500), Validators.pattern("^[0-9]*$")]],
+      cuotas: [null] // Asegúrate de que la propiedad cuotas esté en tu formulario si la usas
+    });
+  }
   
   buscar() {
       if (this.dni) {
@@ -38,8 +46,7 @@ export class ValidarInformacionComponent {
                   } else {
                     this.isLoading = false;
                     alert("ERROR AL OBTENER LOS DATOS")
-                      console.error('No se encontraron datos en la respuesta');
-                    
+                      console.error('No se encontraron datos en la respuesta');          
                   }
               },
               error: (error) => {
@@ -50,25 +57,21 @@ export class ValidarInformacionComponent {
           });
       }
   }
-
-  // Método para enviar el formulario
-  enviar() {
-    if (this.solicitanteData) {
-      localStorage.setItem('dniSolicitante', this.dni); 
-      this.router.navigate(['/private/detallePrestamo']); 
-    } else {
-      alert('Por favor, busca un DNI válido antes de continuar.');
-    }
-  }
+  
   validateNumber(event: KeyboardEvent): void {
     const charCode = event.key.charCodeAt(0);
     if (charCode < 48 || charCode > 57) {
       event.preventDefault();
     }
   }
-
   continue() {
-    this.router.navigate(['/private/consulta/prestamo']);
+    if (this.solicitanteData) {
+      localStorage.setItem('dniSolicitante', this.dni); 
+      console.log("datos guardados",localStorage.getItem('dniSolicitante'));
+      this.router.navigate(['/private/consulta/prestamo']);
+    } else {
+      alert('Por favor, busca un DNI válido antes de continuar.');
+    }
   }
 
 }
