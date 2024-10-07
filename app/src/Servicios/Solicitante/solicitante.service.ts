@@ -28,9 +28,10 @@ export class SolicitanteService {
         withCredentials: true
     });
   }
-  getSolicitanteIdByDni(id: string): Observable<Solicitante> {
-    return this.http.get<Solicitante>(`${this.apiUrl}/solicitantes/searchByDni/${id}`);
-}
 
+  getSolicitanteIdByDni(id: string): Observable<Solicitante> {
+    return this.http.get<Solicitante>(`${this.apiUrl}/solicitantes/searchByDni/${id}`,{ 
+      withCredentials: true});
+}
 
 }
