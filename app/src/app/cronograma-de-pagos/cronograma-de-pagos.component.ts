@@ -45,7 +45,7 @@ export class CronogramaDePagosComponent implements OnInit {
     const solicitanteId = localStorage.getItem('solicitanteIdStr');
 
     // URL del endpoint de descarga del PDF
-    const url = `http://localhost:8080/api/v1/reports/pdf/${solicitanteId}`;
+    const url = `https://financiera-back-2a2b.onrender.com/api/v1/reports/pdf/${solicitanteId}`;
 
     // Hacer la solicitud HTTP para descargar el PDF
     this.http.get(url, { responseType: 'blob' })
