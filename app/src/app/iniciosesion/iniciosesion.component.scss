@@ -1,35 +1,16 @@
 .login-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 62vh;
-  background-color: white;
-  text-decoration: none;
-}
-
-form {
-  width: 100%;
-  max-width: 400px;
+  height: 100vh;
+  background: linear-gradient(180deg, #0056A3 0%, #00203D 100%);
 }
 
 .form-control {
-  border-radius: 50px;
-  padding: 10px;
-  border: 1px solid #363948FF;
-  font-size: 1rem;
+  border: linear-gradient(180deg, #0056A3 0%, #00203D 100%);
+
 }
 
 .btn-custom {
-  background: linear-gradient(to right, #000000, #363948);
+  background: linear-gradient(180deg, #0056A3 0%, #00203D 100%);
   color: white;
-  border-radius: 50px;
-  padding: 10px;
-  font-size: 1rem;
-}
-
-.btn-custom:hover {
-  background: linear-gradient(to right, #000000, #363948);
 }
 .custom-alert {
   background-color: #f8d7da;
@@ -49,4 +30,13 @@ form {
   0% { opacity: 1; }
   80% { opacity: 0.8; }
   100% { opacity: 0; }
+}
+
+.card {
+  border-radius: 30px
+}
+
+.inso{
+  color: #F28907;
+  font-family: Crushed;
 }
