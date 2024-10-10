@@ -1,7 +1,32 @@
-.butons{
-    margin-top: 200px;
+.detalle{
+    min-height: 100vh;
+    margin: auto;
+    background: linear-gradient(180deg,#00203D  0%,#0056A3  80%);
+}
+
+.detailCron{
+    width: 100%;
+    background: linear-gradient(270deg, #6CC1EB 0%, #3D6D85 100%);
+}
+
+.butons:hover{
+    background-color: orange;
+    color: white;
 }
 
 .cerrarbtn{
-    margin-top: 325px;
+    margin-top: 450px;
+}
+
+.cerrarbtn:hover{
+    background-color: orange;
+    color: white;
+}
+
+.card{
+    background: linear-gradient(270deg, #6CC1EB 0%, #3D6D85 100%);
+}
+
+.nav{
+    min-height: 90vh;
 }

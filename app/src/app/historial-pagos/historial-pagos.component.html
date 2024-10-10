@@ -1,30 +1,35 @@
-<div class="container-fluid row fw-semibold fst-italic">
-
-  <div class="col-md-2 ">
-    <button class="btn btn-outline-dark rounded-end-pill fw-semibold fst-italic mb-3 fs-5 butons">Historial de Prestamos <i class="fa-solid fa-file-invoice-dollar fa-lg"></i></button>
-    <button class="btn btn-outline-dark rounded-end-pill fw-semibold fst-italic mt-3 fs-5 butons" (click)="realizarPrestamo()">Realizar Prestamos <i class="fa-solid fa-gun me-2 fa-lg"></i><i class="fa-solid fa-droplet me-2 fa-lg"></i><i class="fa-solid fa-hand-holding-dollar fa-lg"></i></button>
-    <button class="btn btn-outline-dark rounded-end-pill fw-semibold fst-italic cerrarbtn" (click)="cerrarSesion()"> Cerrar Sesion</button>
+<body class="detalle container-fluid fw-semibold fst-italic text-light row">
+  <div class="col-md-1">
+    <div class="card mt-5 nav">
+      <img src="inso.png"/>
+      <button class="btn btn-outline-light fw-semibold fst-italic mb-3 mt-4 fs-5 butons"><i class="fa-regular fa-circle-user fa-2xl"></i> Cuenta </button>
+      <button class="btn btn-outline-light  fw-semibold fst-italic mb-3 fs-5 butons"><i class="fa-solid fa-file-invoice-dollar fa-2xl"></i>Historial</button>
+      <button class="btn btn-outline-light  fw-semibold fst-italic fs-5 butons" (click)="realizarPrestamo()"><i class="fa-solid fa-dollar-sign fa-2xl"></i> Prestamos</button>
+      <button class="btn btn-outline-light  fw-semibold fst-italic cerrarbtn " (click)="cerrarSesion()"><i class="fa-regular fa-circle-left fa-xl"></i> Cerrar Sesion</button>
+    </div>
   </div>
 
-  <div class="col-md-10">
-    <h1 class="text-center ">HISTORIAL DE PRESTAMOS REALIZADOS</h1>
-      <table class="table">
-        <thead>
+  <div class="col-md-11">
+    <h1 class="mt-2 mb-2 text-warning">Préstamos Realizados</h1>
+      <table class="rounded-2 detailCron text-center">
+        <thead class="text-warning">
           <tr>
             <th scope="col">N° Cronograma</th>
             <th scope="col">Fecha</th>
-            <th scope="col">Estado</th>
+            <th scope="col">Nombre solicitante</th>
+            <th scope="col">DNI</th>
             <th scope="col">Detalle</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="table-group-divider">
           <tr *ngFor="let detallePrestamo of detallePrestamos, let i = index">
             <th>{{ detallePrestamo.detailId }}</th>
-            <td>{{ detallePrestamo.fechaInicio }}</td>
-             <td><!--<p class="text-success d-inline me-5">Activo</p> -->
-                <p [ngClass]="finalizados[i] ? 'text-danger' : 'text-success'" class="d-inline me-5">{{ finalizados[i] ? 'Finalizado' : 'Activo' }}</p>
-                <button class="btn btn-danger ms-5" (click)="finalizarPrestamo(i)" [ngClass]="finalizados[i] ? 'disabled' : '' ">Finalizar</button>
-            </td>
+            <td>{{ detallePrestamo.fechaInicio}}</td>
+             <td>
+                <!-- <p [ngClass]="finalizados[i] ? 'text-danger' : 'text-success'" class="d-inline me-5">{{ finalizados[i] ? 'Finalizado' : 'Activo' }}</p>
+                <button class="btn btn-danger ms-5" (click)="finalizarPrestamo(i)" [ngClass]="finalizados[i] ? 'disabled' : '' ">Finalizar</button> -->
+                {{detallePrestamo.solicitante.nombres}}, {{detallePrestamo.solicitante.apellido_paterno}} {{detallePrestamo.solicitante.apellido_materno}}</td>
+            <td>{{ detallePrestamo.solicitante.numero}}</td>
             <td>
               <button class="btn btn-outline-warning text-center" (click)="mostrarDetalle(detallePrestamo)">
                 <i class="fa-solid fa-arrow-down"></i>
@@ -34,50 +39,52 @@
         </tbody>
       </table>
       <div class="row mt-4" *ngIf="detalleSeleccionado">
-        
-        <h3>Detalle del Préstamo Seleccionado</h3>
-        <p><strong>ID:</strong> {{ detalleSeleccionado.detailId }}</p>
-        <p><strong>Fecha de Inicio:</strong> {{ detalleSeleccionado.fechaInicio }}</p>
-        <p><strong>Estado:</strong> {{ finalizados[detallePrestamos.indexOf(detalleSeleccionado)] ? 'Finalizado' : 'Activo' }}</p>
-        <p><strong>Pagar Total:</strong> {{ detalleSeleccionado.pagarTotal}} </p>
-        <p><strong>Interes Total:</strong> {{ detalleSeleccionado.interesTotal}} </p>
 
-        <div class="col-md-6">
-          <h2>SOLICITANTE</h2>
-          <p><strong>DNI:</strong> {{ detalleSeleccionado.solicitante.numero}}</p>
-          <p><strong>Nombre:</strong> {{ detalleSeleccionado.solicitante.nombres }}</p>
-          <p><strong>Apellido Paterno:</strong> {{ detalleSeleccionado.solicitante.apellido_paterno }}</p>
-          <p><strong>Apellido Materno:</strong> {{ detalleSeleccionado.solicitante.apellido_materno }}</p>
+        <div class="col-md-4 card rounded-4 text-light">
+          <h3 class="text-warning">Detalle: </h3>
+          <p><strong>Moneda: </strong> Soles</p>
+          <p><strong>N° de Cuotas: </strong> {{ detalleSeleccionado.prestamo.cuotas }}</p>
+          <p><strong>Fecha de inicio: </strong> {{ detalleSeleccionado.fechaInicio }}</p>
+          <p><strong class="text-warning">Capital: </strong> S/. {{ detalleSeleccionado.prestamo.monto }}</p>
+          <p><strong>Tasa de interés efectiva: </strong> {{ detalleSeleccionado.interesTotal}} </p>
+          <p><strong>Tasa de interés: </strong>{{detalleSeleccionado.prestamo.interes}}</p>
+          <p><strong>Periodo: </strong>{{ detalleSeleccionado.prestamo.cuotas }} mes/es</p>
+          <p><strong class="text-warning">Monto Total a Pagar: </strong>S/. {{ detalleSeleccionado.pagarTotal}} </p>
         </div>
 
-        <div class="col-md-6">
-          <h2>PRESTAMO</h2>
-          <p><strong>Monto:</strong> {{ detalleSeleccionado.prestamo.monto }}</p>
-          <p><strong>Cuotas:</strong> {{ detalleSeleccionado.prestamo.cuotas }}</p>
-          <p><strong>Tasa de Interés:</strong> {{ detalleSeleccionado.prestamo.interes }}</p>
-        </div>
-
-        <h2>CRONOGRAMA</h2>
-        <div *ngIf="detalleSeleccionado.cronograma && detalleSeleccionado.cronograma.length > 0">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">N° Cuota</th>
-                <th scope="col">Monto Cuota</th>
-                <th scope="col">Fecha de Pago</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Iterar sobre el cronograma para mostrar cada cuota -->
-              <tr *ngFor="let cuota of detalleSeleccionado.cronograma">
-                <td>{{ cuota.nmrcuota }}</td>
-                <td>{{ cuota.cuota }}</td>
-                <td>{{ cuota.fechaPago }}</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="col-md-8 ">
+          <div *ngIf="detalleSeleccionado.cronograma && detalleSeleccionado.cronograma.length > 0">
+            <table class="rounded-2 detailCron text-center">
+              <thead class="text-warning">
+                <tr>
+                  <th scope="col">N° Cuota</th>
+                  <th scope="col">Fecha de Pago</th>
+                  <th scope="col">Cuota</th>
+                  <th scope="col">Interes</th>
+                  <th scope="col">Capital Amortizado</th>
+                  <th scope="col">Saldo Final</th>
+                </tr>
+              </thead>
+              <tbody class="table-group-divider">
+                <tr *ngFor="let cronograma of detalleSeleccionado.cronograma">
+                  <td>{{ cronograma.nmrcuota }}</td>
+                  <td>{{ cronograma.fechaPago }}</td>
+                  <td>S/. {{ cronograma.cuota }}</td>
+                  <td>S/. {{ cronograma.interes }}</td>
+                  <td>S/. {{ cronograma.capitalamortizado }}</td>
+                  <td>S/. {{ cronograma.saldofinal }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
       </div>
+      <div class="row mt-1">
+        <div class="line">
+          <hr class="border border-warning border-1 opacity-100">
+        </div>
+        <p class="text-end text-warning fst-italic fw-semibold">Copyright © 2024, All rights reserved.</p>
+      </div> 
   </div>
-</div>
+</body>
