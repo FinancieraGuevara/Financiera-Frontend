@@ -1,24 +1,55 @@
-<div class="login-container">
-  <h2 class="mb-4">Iniciar Sesión</h2>
-  <form [formGroup]="formUser" (ngSubmit)="enviar()">
-    <div class="mb-3">
-      <input type="text" class="form-control" formControlName="username" placeholder="Ingrese usuario" required>
-      <div class="alert alert-danger" *ngIf="formUser.get('username')?.invalid && formUser.get('username')?.touched">
-        <span *ngIf="formUser.get('username')?.errors?.['required']">El nombre de usuario es obligatorio.</span>
-      </div>
+<div class="col-md-12">
+  <div class="login-container container-fluid d-flex justify-content-center align-items-center row">
+    <div class="card w-25 ">
+        <div class="card-body row">
+          <div  class="text-center">
+            <p class="fs-1 inso">I N S O</p>
+          </div>
+          <img src="inso.png" class="mb-3 iimg-fluid"/>
+          <form [formGroup]="formUser" (ngSubmit)="enviar()" class="form">
+              <div class="mb-3 d-grid">
+                <input type="text" class="form-control rounded-pill border-2" formControlName="username" placeholder="Nombre de usuario" required>
+                <div class="alert alert-danger mt-3" *ngIf="formUser.get('username')?.invalid && formUser.get('username')?.touched">
+                  <span *ngIf="formUser.get('username')?.errors?.['required']">El nombre de usuario es obligatorio.</span>
+                </div>
+              </div>
+              <div class="mb-3 d-grid">
+              <input type="password" class="form-control rounded-pill border-2" formControlName="password" placeholder="Contraseña" required>
+                <div class="alert alert-danger mt-3" *ngIf="formUser.get('password')?.invalid && formUser.get('password')?.touched">
+                  <span *ngIf="formUser.get('password')?.errors?.['required']">La contraseña es obligatoria.</span>
+                  <span *ngIf="formUser.get('password')?.errors?.['minlength']">Su contraseña no puede ser menor a 4 caracteres.</span>
+                </div>
+              </div>
+              <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-custom rounded-pill" [disabled]="formUser.invalid">Iniciar sesión</button>
+              </div>
+              <div class="text-center">
+                <a class="text-dark" [routerLink]="['/recuperarContra']">Olvidé la contraseña</a>
+              </div>
+          </form>         
+        </div>
     </div>
-    <div class="mb-3">
-      <input type="password" class="form-control" formControlName="password" placeholder="Ingrese su contraseña" required>
-      <div class="alert alert-danger" *ngIf="formUser.get('password')?.invalid && formUser.get('password')?.touched">
-        <span *ngIf="formUser.get('password')?.errors?.['required']">La contraseña es obligatoria.</span>
-        <span *ngIf="formUser.get('password')?.errors?.['minlength']">Su contraseña no puede ser menor a 4 caracteres.</span>
-      </div>
+    <!-- Alerta de error personalizada -->
+    <div class="custom-alert" *ngIf="showError">
+      Error: Hubo un problema al iniciar sesión.
     </div>
-    <button type="submit" class="btn btn-custom w-100" [disabled]="formUser.invalid">Iniciar sesión</button>
-  </form>
-  <!-- Alerta de error personalizada -->
-  <div class="custom-alert" *ngIf="showError">
-    Error: Hubo un problema al iniciar sesión.
+    <div class="row">
+  
+      <div  class="col-md-5">
+          <div class="line">
+              <hr class="border border-light border-1 opacity-100">
+          </div>
+      </div>
+      <div  class="face col-md-2 text-center">
+          <p class="fs-1 inso">I N S O</p>
+      </div>
+      <div  class="col-md-5">
+          <div class="line">
+              <hr class="border border-light border-1 opacity-100">
+          </div>
+      </div>
+      <p class="text-center text-light fst-italic fw-semibold">Copyright © 2024, All rights reserved.</p>
+  </div>
   </div>
 </div>
 
