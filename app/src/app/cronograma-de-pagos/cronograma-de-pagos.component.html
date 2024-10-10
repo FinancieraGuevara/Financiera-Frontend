@@ -30,11 +30,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-6">
+                <div class="col-4">
                     <p class="er et">Plazo (N° de cuotas): <span>{{ ultimoDetallePrestamo?.cronograma?.length }}</span></p>
                 </div>
-                <div class="col-6">
-                    <p class="color et">Monto total a pagar: S/<span class="negro">{{ ultimoDetallePrestamo?.pagarTotal }}</span></p>
+                <div class="col-4">
+                    <p class="color et">Total intereses: S/<span class="negro">{{ ultimoDetallePrestamo?.interesTotal}}</span></p>
+                </div>
+                <div class="col-4">
+                    <p class="color et">Monto total a pagar: S/<span class="negro">{{ ultimoDetallePrestamo?.pagarTotal}}</span></p>
                 </div>
             </div>
     
@@ -45,14 +48,23 @@
             </div>
 
             <div class="row vw80 titulo text-center et">
-                <div class="col-4 text-center">
-                    <p>Cuota</p>
+                <div class="col-2 text-center">
+                    <p>NmrCuota</p>
                 </div>
-                <div class="col-4">
+                <div class="col-2">
                     <p>Fecha de pago</p>
                 </div>
-                <div class="col-4">
-                    <p>Total</p>
+                <div class="col-2">
+                    <p>Cuota</p>
+                </div>
+                <div class="col-2">
+                    <p>Interes</p>
+                </div>
+                <div class="col-2">
+                    <p>Capital Amortizado</p>
+                </div>
+                <div class="col-2">
+                    <p>Saldo final</p>
                 </div>
             </div>
 
@@ -65,15 +77,24 @@
 
             <div class="row vw80 cuota text-center eb">
                 <div *ngFor="let cronograma of ultimoDetallePrestamo?.cronograma" class="row">
-                    <div class="col-4">
+                    <div class="col-2">
                       <p class="n-cuota">{{ cronograma.nmrcuota }}</p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-2">
                       <p class="fecha-cuota">{{ cronograma.fechaPago }}</p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-2">
                       <p>S/<span class="monto-cuota">{{ cronograma.cuota }}</span></p>
                     </div>
+                    <div class="col-2">
+                        <p>S/<span class="monto-cuota">{{ cronograma.interes }}</span></p>
+                      </div>
+                    <div class="col-2">
+                        <p>S/<span class="monto-cuota">{{ cronograma.capitalamortizado }}</span></p>
+                      </div>
+                      <div class="col-2">
+                        <p>S/<span class="monto-cuota">{{ cronograma.saldofinal }}</span></p>
+                      </div>
                   </div>
             </div>
 
