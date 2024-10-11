@@ -43,6 +43,19 @@ export class HistorialPagosComponent {
     this.router.navigate(['/private/consulta']);
   }
 
+  cerrarSesion() {
+    this.detallePrestamoService.logout().subscribe({
+        next: (response) => {
+            console.log('Sesión cerrada:', response);
+            this.router.navigate(['/login']);
+        },
+        error: (error) => {
+            console.error('Error al cerrar sesión:', error);
+          
+        }
+    });
+  }
+}
   // finalizarPrestamo(index: number): void {
   //   this.finalizados[index] = true;
   //   this.guardarEstadosFinalizados();
@@ -63,16 +76,3 @@ export class HistorialPagosComponent {
   //     return new Array(this.detallePrestamos.length).fill(false);
   //   }
   // }
-  cerrarSesion() {
-    this.detallePrestamoService.logout().subscribe({
-        next: (response) => {
-            console.log('Sesión cerrada:', response);
-            this.router.navigate(['/login']);
-        },
-        error: (error) => {
-            console.error('Error al cerrar sesión:', error);
-          
-        }
-    });
-  }
-}
