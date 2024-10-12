@@ -76,6 +76,7 @@ export class ValidarInformacionComponent {
   continue() {
     if (this.solicitanteData) {
       localStorage.setItem('dniSolicitante', this.dni); 
+      localStorage.setItem('tipodocumento',this.selectedTipo);
       console.log("datos guardados",localStorage.getItem('dniSolicitante'));
       this.router.navigate(['/private/consulta/prestamo']);
     } else {

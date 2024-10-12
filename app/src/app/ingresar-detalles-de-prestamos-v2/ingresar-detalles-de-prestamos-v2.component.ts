@@ -19,6 +19,7 @@ import { DetallePrestamoService } from '../../Servicios/detallePrestamo/detalle-
 export class IngresarDetallesDePrestamosV2Component implements OnInit {
   
   dniSolicitante: string = localStorage.getItem('dniSolicitante') || '';
+  selectedTipo: string = localStorage.getItem('tipodocumento') || '';
   isInputValid: boolean = false;
   isConfirmButtonDisabled: boolean = true;
   monto: number = 0;
@@ -61,9 +62,9 @@ export class IngresarDetallesDePrestamosV2Component implements OnInit {
 
   continue(): void {
     const dniSolicitante = localStorage.getItem('dniSolicitante'); 
-    
-    if (dniSolicitante) {
-      this.solicitanteService.getDataById(dniSolicitante, 'dni').subscribe({
+    const selectedTipo = localStorage.getItem('tipodocumento');
+    if (dniSolicitante && selectedTipo) {
+      this.solicitanteService.getDataById(dniSolicitante, selectedTipo).subscribe({
         next: (response: responseSolicitante<Solicitante>) => {
           if (response && response.data) {
             this.solicitanteData = response.data;
