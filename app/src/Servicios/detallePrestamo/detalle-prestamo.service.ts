@@ -11,7 +11,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class DetallePrestamoService {
 
-  private apiUrl = 'https://financiera-back-2a2b.onrender.com/api/v1/private/detalleprestamos';
+  private apiUrl = 'http://localhost:8080/api/v1/private/detalleprestamos';
 
   constructor(private http: HttpClient) {}
 
@@ -67,11 +67,11 @@ export class DetallePrestamoService {
     );
   }
   logout(): Observable<any> {
-    return this.http.post('https://financiera-back-2a2b.onrender.com/api/v1/logout', {}, { withCredentials: true });
+    return this.http.post('http://localhost:8080/api/v1/logout', {}, { withCredentials: true });
   }
 
   exportPDF(solicitanteId: number): Observable<Blob> {
-    return this.http.get(`https://financiera-back-2a2b.onrender.com/api/v1/reports/pdf/${solicitanteId}`, {
+    return this.http.get(`http://localhost:8080/api/v1/reports/pdf/${solicitanteId}`, {
       responseType: 'blob',
       withCredentials: true // Incluir cookies
     })
