@@ -1,8 +1,13 @@
 .container {
     max-width: 800px;
     margin: 0 auto;
+    
   }
-  
+  .backgroundcontainer
+  {
+    background: linear-gradient(#0056A3,#00203D);
+    height: 100vh;
+  }
   .back-arrow {
     top: 10px;
     left: 10px;
@@ -19,8 +24,8 @@
 }
   
 .btn {
-    background: linear-gradient(90deg, #F2CE76, #8D6516); /* Gradiente de izquierda (claro) a derecha (oscuro) */
-    color: black;
+    background: linear-gradient(90deg, #6CC1EB, #3D6D85); /* Gradiente de izquierda (claro) a derecha (oscuro) */
+    color: white;
     border: none;
     padding: 10px 20px;
     font-size: 1.2rem;
@@ -96,10 +101,10 @@
 
 .spinner {
   border: 8px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #007bff; // Color del spinner
+  border-left-color: #EE8600; // Color del spinner
   border-radius: 50%;
-  width: 50px; // Ajusta el tamaño según necesites
-  height: 50px; // Ajusta el tamaño según necesites
+  width: 200px; // Ajusta el tamaño según necesites
+  height: 200px; // Ajusta el tamaño según necesites
   animation: spin 1s linear infinite;
 }
 
@@ -115,4 +120,32 @@
   &:hover {
       transform: scale(1.1);
   }
+}
+
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Estilo para la etiqueta del botón radio */
+.form-check-label {
+  color: #00203D;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  padding: 8px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Estilo del botón radio seleccionado */
+input[type="radio"]:checked + .form-check-label {
+  background-color: #EE8600;
+  border-color: #995a08;
+  color: white;
+}
+.progress-bar
+{
+  background-color:#EE8600 !important ;
 }
