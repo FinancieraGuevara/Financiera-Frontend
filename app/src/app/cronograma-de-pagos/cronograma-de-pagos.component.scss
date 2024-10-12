@@ -1,4 +1,4 @@
-*{
+nopading{
     padding: 0!important;
     margin: 0!important;
 }
@@ -114,4 +114,9 @@
     &:hover {
         color: black; /* Example hover effect */
     }
+}
+
+.modalstyle {
+    margin: auto !important;
+    padding: auto !important;
 }
