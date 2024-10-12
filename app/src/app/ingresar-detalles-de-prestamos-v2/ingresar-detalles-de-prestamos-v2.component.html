@@ -32,25 +32,29 @@
                    formControlName="monto"  
                    (keypress)="validateInput($event)" />
             <div *ngIf="prestamoForm.get('monto')?.invalid && prestamoForm.get('monto')?.touched" class="text-danger">
-              El monto debe ser mayor o igual a 500 y menor o igual a 10,000.
+              El monto debe ser mayor a 0.
             </div>
           </div>
       
           <div class="col-md-3 d-flex justify-content-center">
             <button type="button" 
-                    class="btn btn-mes m-0" 
-                    (click)="prestamoForm.get('monto')?.value >= 500 ? selectTime(1) : null"
-                    [disabled]="prestamoForm.get('monto')?.value < 500 || prestamoForm.get('monto')?.value > 10000 || selectedTimeButton === 1">
-              <span></span>1 mes <br>10 % de interés
+                    class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"
+                    (click)="prestamoForm.get('monto')?.value > 0 ? selectTime(1) : null"
+                    [disabled]="prestamoForm.get('monto')?.value <= 0 || prestamoForm.get('monto')?.value > 5000 || selectedTimeButton === 1">
+              <div class="text-center fs-4 fw-bold">1</div>
+              <div class="text-center fs-4 fw-bold">mes</div>
+              <div class="text-center">10 % de interés</div>
             </button>
           </div>
       
           <div class="col-md-3 d-flex justify-content-center">
-            <button type="button" 
-                    class="btn btn-mes m-0" 
-                    (click)="prestamoForm.get('monto')?.value >= 500 ? selectTime(6) : null"
-                    [disabled]="prestamoForm.get('monto')?.value < 500 || prestamoForm.get('monto')?.value > 10000 || selectedTimeButton === 6">
-              <span></span>6 meses <br>20 % de interés
+             <button type="button" 
+                    class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"
+                    (click)="prestamoForm.get('monto')?.value > 0 ? selectTime(6) : null"
+                    [disabled]="prestamoForm.get('monto')?.value <= 0 || prestamoForm.get('monto')?.value > 5000  || selectedTimeButton === 6">
+              <div class="text-center fs-4 fw-bold">6</div>
+              <div class="text-center fs-4 fw-bold">meses</div>
+              <div class="text-center">20 % de interés</div>
             </button>
           </div>
         </div>
@@ -65,15 +69,12 @@
           </div>
         </div>
       </form>
-    
-    </div>
-    
-    <div class="row mt-1">
+      </div>
+      <div class="row mt-1">
       <div class="line">
         <hr class="border border-1 opacity-100">
       </div>
       <p class="text-end text-warning fst-italic fw-semibold footer">Copyright © 2024, All rights reserved.</p>
     </div> 
-    
-  </div>
-</div>
+   </div>
+

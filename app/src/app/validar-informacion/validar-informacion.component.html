@@ -1,48 +1,90 @@
 <!-- Flecha hacia atrás -->
-<div class="row m-0">
-    <div class="">
-        <a [routerLink]="['/private/historialprestamos']" class="btn-atras text-reset m-0" style="padding: 0;">&lt;</a>
+<div class="container-fluid backgroundcontainer text-light">
+  
+
+<div class="container ">
+    <div class="row fw-semibold p-3 ">
+        <h2 class="text-light">Ingrese los datos</h2>
     </div>
-</div>
+
+    <div class="progress m-3 " role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" style="width: 25%"></div>
+      </div>
+
+      <div class="row">
+        <div class="flechita col-md-1" (click)="volver()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+              <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="80" font-family="Arial" fill="#EE8600">&lt;</text>
+             </svg>
+          </div>
+          <div class="col fs-6 mt-4">
+            <h3 class="ms-3">volver</h3>
+          </div>
+      </div>  
+
+
 
 <!-- Contenido principal -->
-<div class="container-fluid d-flex flex-column justify-content-center min-vh-80 m-0">
+<div class=" container-fluid d-flex flex-column justify-content-center m-0 ">
 
     <div class="container position-relative">
   
         <!-- Título -->
-        <div class="conainter">
-            <div class="row my-4">
-                <h2 class="text-center">Validaremos la información</h2>
-            </div>
-  
+        <div class="conainter ">
             <!-- Formulario -->
             <div class="row">
-                <div class="col-md-6 offset-md-3 form-container">
-                  <form (ngSubmit)="continue()">
+                <div class="col-md  form-container">
+                  <form #myForm="ngForm" (ngSubmit)="continue()" novalidate>
+                     <!-- Campo Tipo Documento -->
+                     <div class="row offset-md-3 align-items-center">
+                        <div class="col-md-4">
+                            <h3 class="fs-5 mx-auto">Tipo:</h3>
+                        </div>
+                        <div class="form-check col-md-4">
+                            <input class="form-check-input" type="radio" name="tipoDocumento" id="Dni" [(ngModel)]="selectedTipo"  #tipoDocumento="ngModel" value="dni" required>
+                            <label class="form-check-label" for="Dni">
+                              Dni
+                            </label>
+                          </div>
+                          <div class="form-check col-md-4">
+                            <input class="form-check-input" type="radio" name="tipoDocumento" id="Ruc" [(ngModel)]="selectedTipo" #tipoDocumento="ngModel" value="ruc" required>
+                            <label class="form-check-label" for="Ruc">
+                              Ruc
+                            </label>
+                          </div>
+                          <div *ngIf="tipoDocumento.invalid" class="text-danger">
+                            Selecciona un tipo de documento.
+                          </div>
+                     </div>
+                     <div *ngIf="isLoading" class="spinner-container">
+                      <div class="spinner" style="width: 3rem; height: 3rem;"></div>
+                    </div>
                     <!-- Campo DNI con botón a la derecha -->
-                    <div class="row mb-4">
-                        <label for="dni" class="form-label">Ingrese el DNI</label>
+                    <div class="row mb-3 mt-3 offset-md-3">
+                        <label for="dni" class="form-label fs-4">Numero de documento</label>
                         <div class="input-group">
-                            <input type="text" id="dni" class="form-control dni-input" placeholder="DNI" maxlength="8" (keypress)="validateNumber($event)" [(ngModel)]="dni" name="dni" required>
+                            <input type="text" id="dni" class="form-control dni-input" placeholder="Documento" maxlength="11" (keypress)="validateNumber($event)" [(ngModel)]="dni" #dniModel="ngModel" name="dni" required>
                             <button class="btn btn-op" type="button" (click)="buscar()">Buscar</button>
                         </div>
+                        <div *ngIf="dniModel.invalid && dniModel.touched" class="text-danger">
+                          El número de documento es obligatorio.
+                        </div>
                     </div>
-                    <div *ngIf="isLoading" class="spinner-container">
-                        <div class="spinner"></div>
-                      </div>
 
-                    <div *ngIf="!isLoading">
+                    <div class="row offset-md-3 " *ngIf="!isLoading && loading==1">
                     <!-- Información del cliente -->
-                    <p>DNI: <span class="dni">{{ solicitanteData.numero }}</span></p>
-                    <p>Apellido Paterno: <span class="apellido-paterno">{{ solicitanteData.apellido_paterno }}</span></p>
-                    <p>Apellido Materno: <span class="apellido-materno">{{ solicitanteData.apellido_materno }}</span></p>
-                    <p>Nombre: <span class="nombre">{{ solicitanteData.nombres }}</span></p>
-                    <p>Código de verificación: <span class="codigo-verificacion">{{ solicitanteData.codigo_verificacion }}</span></p>
+                     <h3 class="text-center p-3 m-3">Información del solicitante</h3>
+                     <div class="col">
+                      <p>Documento: <span class="dni"></span></p>
+                      <p>Nombre o razon social: <span class="nombre"></span></p>
+                     </div>
+                     <div class="col">
+                      <p><span class="dni">{{ solicitanteData.numero }}</span></p>
+                      <p><span class="nombre">{{ solicitanteData.nombre_completo }}</span></p>
+                     </div>
+                    
                     <!-- Botón Continuar -->
                     <div class="row text-center my-4">
-
-                     
                     </div>
                      <button type="submit" class="btn" (click)="continue()">Continuar</button>
                     </div>   
@@ -56,4 +98,6 @@
     <div class="custom-alert" *ngIf="showError">
         Error: Hubo un problema al iniciar sesión.
       </div>
+</div>
+
 </div>

@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 
 import { responseSolicitante } from './responseSolicitante';
 import {NavegadorComponent} from "../navegador/navegador.component";
+import { delay } from 'rxjs';
 
 
 @Component({
@@ -21,8 +22,10 @@ import {NavegadorComponent} from "../navegador/navegador.component";
 export class ValidarInformacionComponent {
   showError: boolean = false;
   dni: string;
+  selectedTipo: string;
   solicitanteData: Solicitante; 
-  isLoading = true; 
+  isLoading = false; 
+  loading=0;
   prestamoForm: FormGroup;
   fb: FormBuilder;
   constructor(private solicitanteService: SolicitanteService, private router: Router, private formBuilder: FormBuilder) {
@@ -34,25 +37,31 @@ export class ValidarInformacionComponent {
   }
   
   buscar() {
-      if (this.dni) {
-          this.solicitanteService.getDataById(this.dni, 'dni').subscribe({
+      if (this.dni && this.selectedTipo) {
+          this.isLoading = true; 
+          this.solicitanteService.getDataById(this.dni,this.selectedTipo ).subscribe({
               next: (response: responseSolicitante<Solicitante>) => { // Asegúrate de que response es de tipo responseSolicitante
                     this.isLoading = false;
+                    this.loading=1;
                     console.log('Respuesta de la API:', response); // Verifica la estructura real de la respuesta
                    // Oculta el loader
                   if (response && response.data) {
                       this.solicitanteData = response.data; // Ahora puedes asignar data a solicitanteData
                       console.log('Datos del solicitante:', this.solicitanteData); // Para verificar
                   } else {
-                    this.isLoading = false;
+
                     alert("ERROR AL OBTENER LOS DATOS")
-                      console.error('No se encontraron datos en la respuesta');          
+                      console.error('No se encontraron datos en la respuesta');      
+                      this.isLoading = false;  
+                      this.loading=0;  
                   }
               },
               error: (error) => {
                
                   console.error('Error obteniendo los datos del solicitante', error);
                   alert("ERROR DATOS NO EXISTEN")
+                  this.isLoading = false;
+                  this.loading=0;  
               }
           });
       }
@@ -67,11 +76,16 @@ export class ValidarInformacionComponent {
   continue() {
     if (this.solicitanteData) {
       localStorage.setItem('dniSolicitante', this.dni); 
+      localStorage.setItem('tipodocumento',this.selectedTipo);
       console.log("datos guardados",localStorage.getItem('dniSolicitante'));
       this.router.navigate(['/private/consulta/prestamo']);
     } else {
       alert('Por favor, busca un DNI válido antes de continuar.');
     }
   }
+  volver(): void {
+    this.router.navigate(['/private/historialprestamos']);
+  }
+
 
 }

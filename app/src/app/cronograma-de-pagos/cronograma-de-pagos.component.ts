@@ -11,7 +11,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {DetallePrestamoService} from '../../Servicios/detallePrestamo/detalle-prestamo.service'
 import { PrestamoService } from '../../Servicios/Prestamo/prestamo.service';
-
+import { Modal } from 'bootstrap';
 @Component({
   selector: 'app-cronograma-de-pagos',
   standalone: true,
@@ -59,7 +59,22 @@ export class CronogramaDePagosComponent implements OnInit {
       console.error('No se encontró el solicitanteId en localStorage');
     }
   }
+  volver () : void {
+    this.eliminarPrestamo();
+    this.continue2();
+    // Obtén el elemento del modal
+  const modalElement = document.getElementById('exampleModal');
 
+  // Verifica que modalElement no sea null
+  if (modalElement) {
+    const modal = Modal.getInstance(modalElement);
+    
+    // Verifica si se ha instanciado el modal
+    if (modal) {
+      modal.hide(); // Cierra el modal
+    }
+  }
+  }
   eliminarPrestamo(): void {
     const prestamoId = localStorage.getItem('prestamoId');
     console.log('ID del préstamo:', prestamoId);

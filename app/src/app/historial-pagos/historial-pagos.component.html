@@ -28,7 +28,7 @@
              <td>
                 <!-- <p [ngClass]="finalizados[i] ? 'text-danger' : 'text-success'" class="d-inline me-5">{{ finalizados[i] ? 'Finalizado' : 'Activo' }}</p>
                 <button class="btn btn-danger ms-5" (click)="finalizarPrestamo(i)" [ngClass]="finalizados[i] ? 'disabled' : '' ">Finalizar</button> -->
-                {{detallePrestamo.solicitante.nombres}}, {{detallePrestamo.solicitante.apellido_paterno}} {{detallePrestamo.solicitante.apellido_materno}}</td>
+                {{detallePrestamo.solicitante.nombre_completo}}</td>
             <td>{{ detallePrestamo.solicitante.numero}}</td>
             <td>
               <button class="btn btn-outline-warning text-center" (click)="mostrarDetalle(detallePrestamo)">
