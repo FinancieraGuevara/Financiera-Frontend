@@ -37,7 +37,7 @@ export class IngresarDetallesDePrestamosV2Component implements OnInit {
 
   ngOnInit(): void {
     this.prestamoForm = this.fb.group({
-      monto: [null, [Validators.required, Validators.min(500), Validators.pattern("^[0-9]*$")]], // Solo números
+      monto: [null, [Validators.required, Validators.min(1), Validators.pattern("^[0-9]*$")]], // Solo números
     });
   }
 
