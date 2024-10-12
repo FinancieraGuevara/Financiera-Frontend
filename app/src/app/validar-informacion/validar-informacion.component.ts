@@ -73,5 +73,9 @@ export class ValidarInformacionComponent {
       alert('Por favor, busca un DNI válido antes de continuar.');
     }
   }
+  volver(): void {
+    this.router.navigate(['/private/historialprestamos']);
+  }
+
 
 }
