@@ -1,15 +1,15 @@
-<body class="detalle container-fluid fw-semibold fst-italic text-light row">
-  <div class="col-md-1">
-    <div class="card mt-5 nav">
-      <img class="img-fluid" src="https://i.imgur.com/nQrwesi.png"/>
-      <button class="btn btn-outline-light  fw-semibold fst-italic mb-3 mt-4  butons"><i class="fa-regular fa-circle-user fa-2xl"></i> Cuenta </button>
-      <button class="btn btn-outline-light  fw-semibold fst-italic mb-3  butons"><i class="fa-solid fa-file-invoice-dollar fa-2xl"></i>Historial</button>
-      <button class="btn btn-outline-light  fw-semibold fst-italic  butons" (click)="realizarPrestamo()"><i class="fa-solid fa-dollar-sign fa-2xl"></i> Prestamos</button>
-      <button class="btn btn-outline-light  fw-semibold fst-italic cerrarbtn " (click)="cerrarSesion()"><i class=" fa-regular fa-circle-left fa-xl"></i> Cerrar Sesion</button>
+<body class="detalle container-fluid d-flex justify-content-center fw-semibold fst-italic text-light row">
+  <div class="col-md-2">
+    <div class="nav mt-5 rounded-4 d-grid gap-2 ">
+        <img class="img-fluid image" src="https://i.imgur.com/nQrwesi.png"/>
+        <button class="btn btn-outline-light fw-semibold fst-italic butons rounded-pill"><i class="fa-regular fa-circle-user fa-2xl"></i> Cuenta </button>
+        <button class="btn btn-outline-light fw-semibold fst-italic butons rounded-pill"><i class="fa-solid fa-file-invoice-dollar fa-2xl"></i> Historial</button>
+        <button class="btn btn-outline-light fw-semibold fst-italic butons rounded-pill" (click)="realizarPrestamo()"><i class="fa-solid fa-dollar-sign fa-2xl"></i> Prestamos</button>
+        <button class="btn btn-outline-light fw-semibold fst-italic butons rounded-pill" (click)="cerrarSesion()"><i class=" fa-regular fa-circle-left fa-2xl"></i> Cerrar Sesion</button>
     </div>
   </div>
 
-  <div class="col-md-11">
+  <div class="col-md-10">
     <h1 class="mt-2 mb-2 text-warning">Préstamos Realizados</h1>
       <table class="rounded-2 detailCron text-center">
         <thead class="text-warning">
@@ -40,7 +40,7 @@
       </table>
       <div class="row mt-4" *ngIf="detalleSeleccionado">
 
-        <div class="col-md-4 card rounded-4 text-light">
+        <div class="detail col-md-4 rounded-4 text-light mt-2">
           <h3 class="text-warning">Detalle: </h3>
           <p><strong>Moneda: </strong> Soles</p>
           <p><strong>N° de Cuotas: </strong> {{ detalleSeleccionado.prestamo.cuotas }}</p>
@@ -52,7 +52,7 @@
           <p><strong class="text-warning">Monto Total a Pagar: </strong>S/. {{ detalleSeleccionado.pagarTotal}} </p>
         </div>
 
-        <div class="col-md-8 ">
+        <div class="col-md-8 mt-2 rounded-4">
           <div *ngIf="detalleSeleccionado.cronograma && detalleSeleccionado.cronograma.length > 0">
             <table class="rounded-2 detailCron text-center">
               <thead class="text-warning">

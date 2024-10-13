@@ -42,6 +42,10 @@ export class CronogramaDePagosComponent implements OnInit {
   continue2() {
     this.router.navigate(['/private/consulta/prestamo']);
   }
+
+  cancelarPrestamo(){
+    this.router.navigate(['/private/historialprestamos']);
+  }
   downloadPdf() {
     const solicitanteIdStr = localStorage.getItem('solicitanteIdStr');
     const solicitanteId = parseInt(solicitanteIdStr!, 10);
@@ -75,6 +79,24 @@ export class CronogramaDePagosComponent implements OnInit {
     }
   }
   }
+
+  cancelar (): void{
+    this.eliminarPrestamo();
+    this.cancelarPrestamo();
+    // Obtén el elemento del modal
+  const modalElement = document.getElementById('exampleModal1');
+
+  // Verifica que modalElement no sea null
+  if (modalElement) {
+    const modal = Modal.getInstance(modalElement);
+    
+    // Verifica si se ha instanciado el modal
+    if (modal) {
+      modal.hide(); // Cierra el modal
+    }
+  }
+  }
+
   eliminarPrestamo(): void {
     const prestamoId = localStorage.getItem('prestamoId');
     console.log('ID del préstamo:', prestamoId);
