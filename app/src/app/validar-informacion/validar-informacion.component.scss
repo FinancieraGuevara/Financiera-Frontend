@@ -3,11 +3,8 @@
     margin: 0 auto;
     
   }
-  .backgroundcontainer
-  {
-    background: linear-gradient(#0056A3,#00203D);
-    height: 100vh;
-  }
+  
+
   .back-arrow {
     top: 10px;
     left: 10px;
@@ -148,4 +145,30 @@ input[type="radio"]:checked + .form-check-label {
 .progress-bar
 {
   background-color:#EE8600 !important ;
+}
+
+.backgroundcontainer
+{
+  background: linear-gradient(#0056A3,#00203D);
+  min-height: 100%; 
+  min-height: 100vh;
+}
+.container {
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    max-width: 1140px; /* Controla el ancho en pantallas grandes */
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box; /* Incluye padding dentro del ancho */
+}
+
+@media (max-width: 768px) {
+  .container {
+      max-width: 100%; /* Se adapta a pantallas pequeñas */
+      padding: 10px; /* Ajusta los márgenes para pantallas pequeñas */
+  }
+}
+@media (max-height: 600px) {
+  .backgroundcontainer {
+      min-height: auto; /* En pantallas más pequeñas, ajusta el alto del fondo según el contenido */
+  }
 }

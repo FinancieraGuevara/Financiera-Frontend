@@ -127,7 +127,15 @@ nopading{
 }
 
 .crono{
-    margin: auto;
-    height: 100vh;
+    margin: 0px;
+
     background: linear-gradient(180deg, #0056A3 0%, #00203D 100%);
+    min-height: 100%; 
+    min-height: 100vh;
+}
+
+@media (max-height: 600px) {
+  .crono {
+      min-height: auto; /* En pantallas más pequeñas, ajusta el alto del fondo según el contenido */
+  }
 }
