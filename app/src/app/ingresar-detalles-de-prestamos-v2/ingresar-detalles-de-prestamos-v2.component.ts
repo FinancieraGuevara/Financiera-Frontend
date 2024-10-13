@@ -27,18 +27,38 @@ export class IngresarDetallesDePrestamosV2Component implements OnInit {
   prestamoForm: FormGroup;
   showError: boolean = false;
   solicitanteData: Solicitante | null = null;
+  myForm: FormGroup;
 
+  
   constructor(
     private fb: FormBuilder, 
     private router: Router,
     private prestamoService: PrestamoService,
     private solicitanteService: SolicitanteService,
     private detallePrestamoService: DetallePrestamoService
+    
   ) {}
 
   ngOnInit(): void {
     this.prestamoForm = this.fb.group({
       monto: [null, [Validators.required, Validators.min(1), Validators.pattern("^[0-9]*$")]], // Solo números
+    });
+  }
+
+  realizarPrestamo(){
+    this.router.navigate(['/private/consulta']);
+  }
+
+  cerrarSesion() {
+    this.detallePrestamoService.logout().subscribe({
+        next: (response) => {
+            console.log('Sesión cerrada:', response);
+            this.router.navigate(['/login']);
+        },
+        error: (error) => {
+            console.error('Error al cerrar sesión:', error);
+          
+        }
     });
   }
 
