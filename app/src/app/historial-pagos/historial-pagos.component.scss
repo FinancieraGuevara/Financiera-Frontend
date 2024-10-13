@@ -9,24 +9,19 @@
     background: linear-gradient(270deg, #6CC1EB 0%, #3D6D85 100%);
 }
 
+.butons{
+    margin: 20px;
+}
 .butons:hover{
     background-color: orange;
     color: white;
 }
 
-.cerrarbtn{
-    margin-top: 450px;
-}
-
-.cerrarbtn:hover{
-    background-color: orange;
-    color: white;
-}
-
-.card{
-    background: linear-gradient(270deg, #6CC1EB 0%, #3D6D85 100%);
-}
-
 .nav{
+    background: linear-gradient(270deg, #6CC1EB 0%, #3D6D85 100%);
     min-height: 90vh;
+}
+
+.detail{
+    background: linear-gradient(270deg, #6CC1EB 0%, #3D6D85 100%);
 }

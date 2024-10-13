@@ -59,7 +59,7 @@ nopading{
 }
 
 .content {
-    border: 4px solid #000!important;
+    border: 4px solid #6CC1EB !important;
     border-radius: 6px!important;
 }
 
@@ -82,7 +82,8 @@ nopading{
 }
 
 .btn {
-    background: linear-gradient(90deg, #FFD97D, #99824B); /* Degradado ajustado */
+
+    background: linear-gradient(90deg, #6CC1EB 0%, #3D6D85 100%);
     color: black; /* Texto en blanco */
     padding: 10px 20px; /* Espaciado interno */
     border-radius: 20px; /* Bordes redondeados */
@@ -93,7 +94,7 @@ nopading{
   }
   
   .btn:hover {
-    background: linear-gradient(90deg, #99824B, #FFD97D); /* Invertir el degradado en hover */
+    background: linear-gradient(90deg, #3D6D85 0%, #6CC1EB 100%);
   }
   
   
@@ -119,4 +120,14 @@ nopading{
 .modalstyle {
     margin: auto !important;
     padding: auto !important;
+}
+
+.progress-bar{
+    background: #F28907;
+}
+
+.crono{
+    margin: auto;
+    height: 100vh;
+    background: linear-gradient(180deg, #0056A3 0%, #00203D 100%);
 }

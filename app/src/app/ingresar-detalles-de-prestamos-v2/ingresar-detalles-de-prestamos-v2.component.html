@@ -1,5 +1,5 @@
 <div class="detalle container-fluid fw-semibold fst-italic text-light row">
-  <div class="v100vh">
+  <div class="v100vh  col-6 mx-auto">
     <div class="justify-content-center d-flex flex-column">
       <div class="row mt-5 mb-5">
         <h2>Ingrese los detalles del préstamo</h2>
@@ -31,14 +31,14 @@
                    placeholder="S/" 
                    formControlName="monto"  
                    (keypress)="validateInput($event)" />
-            <div *ngIf="prestamoForm.get('monto')?.invalid && prestamoForm.get('monto')?.touched" class="text-danger">
+            <div class="alert alert-danger ms-3" *ngIf="prestamoForm.get('monto')?.invalid && prestamoForm.get('monto')?.touched">
               El monto debe ser mayor a 0.
             </div>
           </div>
       
           <div class="col-md-3 d-flex justify-content-center">
             <button type="button" 
-                    class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"
+                    class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light rounded-pill buttons"
                     (click)="prestamoForm.get('monto')?.value > 0 ? selectTime(1) : null"
                     [disabled]="prestamoForm.get('monto')?.value <= 0 || prestamoForm.get('monto')?.value > 5000 || selectedTimeButton === 1">
               <div class="text-center fs-4 fw-bold">1</div>
@@ -49,7 +49,7 @@
       
           <div class="col-md-3 d-flex justify-content-center">
              <button type="button" 
-                    class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light"
+                    class="col-5 btn btn-dark d-flex flex-column align-items-center justify-content-center w80p custom-button-b text-light rounded-pill buttons"
                     (click)="prestamoForm.get('monto')?.value > 0 ? selectTime(6) : null"
                     [disabled]="prestamoForm.get('monto')?.value <= 0 || prestamoForm.get('monto')?.value > 5000  || selectedTimeButton === 6">
               <div class="text-center fs-4 fw-bold">6</div>
@@ -80,4 +80,4 @@
     </div> 
 
   </div>
-  
+</div>
