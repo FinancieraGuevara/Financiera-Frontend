@@ -1,20 +1,18 @@
 <div class="crono text-light container-fluid row">
     <div class="col-6 mx-auto">
         <h2 class="h100 fw-semibold fst-italic" >Cronograma de pagos</h2>
-        <div class="progress m-3 " role="progressbar" aria-label="with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress " role="progressbar" aria-label="with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
           <div class="progress-bar" style="width: 75%"></div>
         </div>
     </div>
-    <div class="row nopading">
-        
-        <div class="d-flex justify-content-center align-items-center nopading ">
-            <div class="col-12 d-flex justify-content-center align-items-center nopading ">
+    
+    <div class="row mt-5 mb-3">
+        <div class="d-flex ">
+            <div class="col-12 d-flex ">
                 <button type="button" class="flechita" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background: none; border: none; padding: 0;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-                      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="80" font-family="Arial" fill="black">&lt;</text>
-                    </svg>
+                  <i class="fa-solid fa-chevron-left fa-2xl fs-1 me-2"></i>
                   </button>
-                  <h3 class=" fw-semibold fst-italic" >Atras</h3>
+                  <h3 class=" fw-semibold fst-italic mt-2"> Atras</h3>
             </div>
         </div>
     </div>
@@ -31,7 +29,7 @@
                         <p class="er et" >Moneda: Soles</p>
                     </div>
                     <div class="col-6 nopading">
-                        <p class="color et">Monto de préstamo: s/<span>{{ ultimoDetallePrestamo?.prestamo?.monto }}</span></p>
+                        <p class="color et text-light">Monto de préstamo: s/<span>{{ ultimoDetallePrestamo?.prestamo?.monto }}</span></p>
                     </div>
                 </div>
                 <div class="row nopading">
@@ -39,10 +37,10 @@
                         <p class="er et">Plazo (N° de cuotas): <span>{{ ultimoDetallePrestamo?.cronograma?.length }}</span></p>
                     </div>
                     <div class="col-4 nopading">
-                        <p class="color et">Total intereses: S/<span class="negro">{{ ultimoDetallePrestamo?.interesTotal}}</span></p>
+                        <p class="color et text-light">Total intereses: S/<span class="negro">{{ ultimoDetallePrestamo?.interesTotal}}</span></p>
                     </div>
                     <div class="col-4 nopading">
-                        <p class="color et">Monto total a pagar: S/<span class="negro">{{ ultimoDetallePrestamo?.pagarTotal}}</span></p>
+                        <p class="color et text-light">Monto total a pagar: S/<span class="negro">{{ ultimoDetallePrestamo?.pagarTotal}}</span></p>
                     </div>
                 </div>
         
@@ -105,14 +103,14 @@
     
             </div>
     
-            <div class="row v100 nopading">
+            <!-- <div class="row v100 nopading">
                 <div class="row nopading">
                     <p class="text-end nopading">Para ver su cronograma en formato PDF, descargue:</p>
                 </div>
                 <div class="row download">
                     <button class="btn eb nopading" (click)="downloadPdf();">Descargar PDF</button>
                 </div>
-            </div>
+            </div> -->
     
             <div class="row v100 text-center">
                 <div class="col-md-6 w80 d-grid gap-2">

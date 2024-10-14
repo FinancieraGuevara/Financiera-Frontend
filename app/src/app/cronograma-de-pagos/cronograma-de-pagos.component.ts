@@ -46,6 +46,7 @@ export class CronogramaDePagosComponent implements OnInit {
   cancelarPrestamo(){
     this.router.navigate(['/private/historialprestamos']);
   }
+
   downloadPdf() {
     const solicitanteIdStr = localStorage.getItem('solicitanteIdStr');
     const solicitanteId = parseInt(solicitanteIdStr!, 10);
@@ -63,6 +64,7 @@ export class CronogramaDePagosComponent implements OnInit {
       console.error('No se encontró el solicitanteId en localStorage');
     }
   }
+  
   volver () : void {
     this.eliminarPrestamo();
     this.continue2();
