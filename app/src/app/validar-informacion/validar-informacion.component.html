@@ -53,7 +53,7 @@
                                 <div class="row mb-3 mt-3 offset-md-3">
                                     <label for="dni" class="form-label fs-4">Numero de documento</label>
                                     <div class="input-group">
-                                        <input type="text" id="dni" class="form-control dni-input" placeholder="Documento" maxlength="11" (keypress)="validateNumber($event)" [(ngModel)]="dni" #dniModel="ngModel" name="dni" required>
+                                        <input type="text" id="dni" class="form-control dni-input text-light" placeholder="Documento" maxlength="11" (keypress)="validateNumber($event)" [(ngModel)]="dni" #dniModel="ngModel" name="dni" required>
                                         <button class="btn btn-op" type="button" (click)="buscar()">Buscar</button>
                                     </div>
                                     <div *ngIf="dniModel.invalid && dniModel.touched" class="text-danger">

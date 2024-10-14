@@ -12,12 +12,16 @@
           </div>
         </div>
       </div>
-    
-      <div class="row mt-5">
-        <div class="ico d-flex align-items-center" (click)="volver()">
-          <i class="fa-solid fa-angle-left "></i>
-          <p class="m-0 ps-2">Volver</p>
-        </div>
+
+      <div class="row ">
+        <div class="flechita col-md-1" (click)="volver()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+              <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="80" font-family="Arial" fill="#EE8600">&lt;</text>
+            </svg>
+          </div>
+          <div class="col fs-6 mt-4">
+            <h3 class="ms-3">volver</h3>
+          </div>
       </div>
     
       <form [formGroup]="prestamoForm" (ngSubmit)="continue()">
@@ -27,7 +31,7 @@
           </div>
           <div class="col-md-4 d-flex align-items-center">
             <input type="text" 
-                   class="form-control form-soles" 
+                   class="form-control form-soles rounded-pill" 
                    placeholder="S/" 
                    formControlName="monto"  
                    (keypress)="validateInput($event)" />

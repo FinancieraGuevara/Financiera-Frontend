@@ -60,8 +60,8 @@
   .dni-input {
     border-radius: 25px; /* Bordes redondeados */
     padding: 10px;
-    border: none; /* Eliminar borde predeterminado */
-    outline: none; /* Quitar borde azul al hacer clic */
+    border-color: #6CC1EB; /* Eliminar borde predeterminado */
+    // outline: none; /* Quitar borde azul al hacer clic */
     background-color: transparent; /* Fondo transparente */
     box-shadow: none; /* Eliminar cualquier sombra al hacer clic */
 }
