@@ -20,33 +20,33 @@
     <div class="d-flex justify-content-center align-items-center flex-column view100 nopading">
         <div class="d-flex justify-content-center align-items-center flex-column col-10 nopading">
     
-            <div class="container content w100 nopading">
+            <div class="container content w100 nopading fw-semibold fst-italic">
                 <div class="row nopading">
-                    <p class="er et">Detalle:</p>
+                    <p class="er et text-warning">Detalle:</p>
                 </div>
                 <div class="row nopading">
                     <div class="col-6 nopading">
-                        <p class="er et" >Moneda: Soles</p>
+                        <p class="er et text-warning" >Moneda: <span class="text-light">Soles</span></p>
                     </div>
                     <div class="col-6 nopading">
-                        <p class="color et text-light">Monto de préstamo: s/<span>{{ ultimoDetallePrestamo?.prestamo?.monto }}</span></p>
+                        <p class="color et text-warning">Monto de préstamo: s/<span class="text-light">{{ ultimoDetallePrestamo?.prestamo?.monto }}</span></p>
                     </div>
                 </div>
                 <div class="row nopading">
                     <div class="col-4 nopading">
-                        <p class="er et">Plazo (N° de cuotas): <span>{{ ultimoDetallePrestamo?.cronograma?.length }}</span></p>
+                        <p class="er et text-warning">Plazo (N° de cuotas): <span class="text-light">{{ ultimoDetallePrestamo?.cronograma?.length }}</span></p>
                     </div>
                     <div class="col-4 nopading">
-                        <p class="color et text-light">Total intereses: S/<span class="negro">{{ ultimoDetallePrestamo?.interesTotal}}</span></p>
+                        <p class="color et text-warning">Total intereses: S/<span class="text-light">{{ ultimoDetallePrestamo?.interesTotal}}</span></p>
                     </div>
                     <div class="col-4 nopading">
-                        <p class="color et text-light">Monto total a pagar: S/<span class="negro">{{ ultimoDetallePrestamo?.pagarTotal}}</span></p>
+                        <p class="color et text-warning">Monto total a pagar: S/<span class="text-light">{{ ultimoDetallePrestamo?.pagarTotal}}</span></p>
                     </div>
                 </div>
         
                 <div class="row eb nopading">
                     <div class="col-12 nopading">
-                        <p class="er et">Día de pago: <span class=""></span></p>
+                        <p class="er et text-warning">Día de pago: <span class=""></span></p>
                     </div>
                 </div>
     

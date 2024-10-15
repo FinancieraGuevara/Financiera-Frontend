@@ -17,7 +17,7 @@
             <th scope="col">N° Cronograma</th>
             <th scope="col">Fecha</th>
             <th scope="col">Nombre solicitante</th>
-            <th scope="col">DNI</th>
+            <th scope="col">DNI o RUC</th>
             <th scope="col">Detalle</th>
           </tr>
         </thead>
@@ -42,6 +42,7 @@
 
         <div class="detail col-md-4 rounded-4 text-light mt-2">
           <h3 class="text-warning">Detalle: </h3>
+          <p><strong class="text-warning">N° de Cronograma: </strong> {{ detalleSeleccionado.detailId }}</p>
           <p><strong>Moneda: </strong> Soles</p>
           <p><strong>N° de Cuotas: </strong> {{ detalleSeleccionado.prestamo.cuotas }}</p>
           <p><strong>Fecha de inicio: </strong> {{ detalleSeleccionado.fechaInicio }}</p>
