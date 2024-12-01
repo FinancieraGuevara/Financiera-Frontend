@@ -1,29 +1,23 @@
 import { Routes } from '@angular/router';
-import {IniciosesionComponent} from "./iniciosesion/iniciosesion.component";
-import {ValidarInformacionComponent} from "./validar-informacion/validar-informacion.component";
-import {UsuariosComponent} from "../app/usuarios/usuarios.component";
-import { IngresarDetallePrestamoComponent } from './ingresar-detalle-prestamo/ingresar-detalle-prestamo.component';
-import { AppComponent } from './app.component';
-import { from } from 'rxjs';
-import { PublicusersComponent } from './usuarios/publicusers/publicusers.component';
-import { HistorialPagosComponent } from './historial-pagos/historial-pagos.component';
-import { IngresarDetallesDePrestamosV2Component } from './ingresar-detalles-de-prestamos-v2/ingresar-detalles-de-prestamos-v2.component';
-import { CronogramaDePagosComponent } from './cronograma-de-pagos/cronograma-de-pagos.component';
-import { PrestamobienComponent } from './prestamobien/prestamobien.component';
-
+import { authInverseGuard } from './core/guards/auth-inverse.guard';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
 
- //inicio apunta a cuerpo component
-  { path: 'private/consulta/prestamo/cronograma/bien', component: PrestamobienComponent },
-  { path: 'private/consulta/prestamo/cronograma', component: CronogramaDePagosComponent },
-  { path: 'private/consulta/prestamo', component: IngresarDetallesDePrestamosV2Component },
-  { path: 'private/consulta', component: ValidarInformacionComponent},
-  { path: 'private/users', component: UsuariosComponent },
-  { path: 'public/users', component: PublicusersComponent },
-  { path: 'private/detallePrestamo', component: IngresarDetallePrestamoComponent},
-  { path: 'private/historialprestamos', component: HistorialPagosComponent},
-  { path: 'login', component: IniciosesionComponent },
-  { path: '**', redirectTo: 'login', pathMatch: 'full' }
+  { path: 'auth', 
+    loadChildren : () => import ("././pages/auth/auth.routes").then(a => a.authRoutes),
+    
+  },
+  {
+    path: 'owner',
+    loadChildren : () => import ("./pages/owner/owner.routes").then(o => o.ownerRoutes),
+    canActivate: [authGuard]
+  },
+  { 
+    path: 'prestamos',
+    loadChildren : () => import ("./pages/prestamos/prestamos.routes").then(p => p.prestamosRoutes),
+    canActivate: [authGuard]
+  },
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' }
 ];
 
