@@ -1,0 +1,48 @@
+.historial-pagos {
+  color: white;
+  font-weight: 600;
+  font-style: italic;
+
+  .backgroundcontainer {
+    background: linear-gradient(#0056A3, #00203D);
+    min-height: 100vh;
+    padding: 2rem 0;
+  }
+
+  .table {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .card {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border: none;
+    border-radius: 10px;
+  }
+
+  .text-warning {
+    color: #EE8600 !important;
+  }
+
+  .btn-outline-warning {
+    color: #EE8600;
+    border-color: #EE8600;
+    &:hover {
+      background-color: #EE8600;
+      color: white;
+    }
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: rgba(238, 134, 0, 0.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .historial-pagos {
+    .container {
+      padding: 10px;
+    }
+  }
+}

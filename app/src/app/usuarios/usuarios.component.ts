@@ -1,8 +1,8 @@
 import { Component,OnInit  } from '@angular/core';
-import {UserService} from '../../Servicios/Usuario/user.service'
+import {UserService} from '../core/services/Usuario/user.service'
 import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { User } from '../../Clases/Users/user';
+import { User } from '../shared/models/Users/user';
 @Component({
   selector: 'app-usuarios',
   standalone: true,
