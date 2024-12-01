@@ -1,13 +1,12 @@
 import { Routes } from '@angular/router';
-import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
-import { IniciosesionComponent } from './iniciosesion/iniciosesion.component';
-
+import { AuthLayout2Component } from './auth-layout2/auth-layout2.component';
+import { LoginComponent } from './login/login.component';
 export const authRoutes: Routes = [
     {
         path : "",
-        component :AuthLayoutComponent,
+        component :AuthLayout2Component,
         children: [
-            {path: "login" , component :IniciosesionComponent},
+            {path: "login" , component :LoginComponent},
         ]
     }
 ];

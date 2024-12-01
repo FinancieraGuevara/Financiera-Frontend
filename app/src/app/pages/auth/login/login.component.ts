@@ -2,17 +2,17 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Component, inject } from '@angular/core';
-import {MatSnackBarModule,MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from "../../../core/services/auth/auth.service";
 
 @Component({
-  selector: 'app-iniciosesion',
+  selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatSnackBarModule],
-  templateUrl: './iniciosesion.component.html',
-  styleUrls: ['./iniciosesion.component.scss']
+  imports: [CommonModule,FormsModule,ReactiveFormsModule, MatSnackBarModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss'
 })
-export class IniciosesionComponent {
+export class LoginComponent {
   loginForm: FormGroup;
 
   private fb = inject(FormBuilder);
@@ -57,5 +57,4 @@ export class IniciosesionComponent {
       verticalPosition : 'top'
     });
   }
-  
 }
